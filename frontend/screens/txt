@@ -1,0 +1,191 @@
+
+
+i want the confirm booking to be a separate page and also it will show all the details when booking and also pdf downlao d after client booking the doctor hass to confirm and upon confrimation a mail or sms message will be sent saying doctor confrimed booking and then the price will be showing the price will be given by the doctor and it will gebrate a link to the user using paystack
+
+Yes — what you want is actually a complete professional medical booking workflow. Your idea is very good and close to what real hospitals use. Let’s design the full system architecture so you know exactly how it should work.
+
+I’ll explain the correct flow and the technical pieces you need.
+
+Complete Appointment Booking System Flow
+1. Patient Books Appointment (Website)
+
+User fills booking form on your site.
+
+Example:
+
+Service: Cardiology
+Doctor: Dr Emily Johnson
+Date: 20 June 2026
+Time: 10:00 AM
+
+Patient:
+Name: John Doe
+Phone: +233xxxxxxxx
+Email: john@email.com
+
+User clicks Confirm Booking.
+
+Then redirect to:
+
+/booking-confirmation
+2. Confirmation Page (Separate Page)
+
+This page shows all booking details.
+
+Example layout:
+
+Appointment Submitted
+
+Doctor: Dr Emily Johnson
+Service: Cardiology
+Date: 20 June 2026
+Time: 10:00 AM
+
+Patient:
+Name: John Doe
+Phone: +233xxxxxxxx
+Email: john@email.com
+
+Status: Waiting for Doctor Approval
+
+Buttons:
+
+Download Appointment PDF
+Back to Home
+3. PDF Appointment Ticket
+
+When the user clicks Download PDF, it generates something like:
+
+ZIV SPECIALIST MEDICAL CENTRE
+
+Appointment Ticket
+
+Booking ID: ZIV-48392
+
+Doctor: Dr Emily Johnson
+Service: Cardiology
+Date: 20 June 2026
+Time: 10:00 AM
+
+Patient: John Doe
+Phone: +233xxxxxxxx
+
+Status: Pending Doctor Confirmation
+
+You can generate this using:
+
+jsPDF
+
+or from backend:
+
+Node.js + PDFKit
+4. Doctor Dashboard (Admin Panel)
+
+Doctors log in to a dashboard.
+
+They see booking requests:
+
+Booking Requests
+
+1. John Doe
+   Cardiology
+   20 June - 10:00 AM
+   Status: Pending
+
+[Approve] [Reject]
+
+Doctor clicks Approve.
+
+5. Doctor Sets Price
+
+When approving, doctor enters price:
+
+Consultation Fee: 300 GHS
+
+System saves it.
+
+6. System Sends Notification
+
+Once doctor approves:
+
+System sends:
+
+Email
+
+Example:
+
+Subject: Appointment Confirmed
+
+Your appointment with Dr Emily Johnson has been confirmed.
+
+Date: 20 June
+Time: 10:00 AM
+
+Consultation Fee: 300 GHS
+
+Pay here:
+https://pay.zivmedical.com/booking/83932
+SMS
+
+Example SMS:
+
+ZIV Medical:
+Your appointment with Dr Emily Johnson is confirmed.
+
+Fee: 300 GHS
+
+Pay here:
+https://pay.zivmedical.com/83932
+
+You can send SMS using:
+
+Twilio
+Vonage
+Africa's Talking
+Hubtel (popular in Ghana)
+7. Payment with Paystack
+
+User clicks the link.
+
+Page shows:
+
+Appointment Payment
+
+Doctor: Dr Emily Johnson
+Service: Cardiology
+Date: 20 June
+Fee: 300 GHS
+
+Button:
+
+Pay with Paystack
+
+Integration:
+
+Paystack Checkout
+
+Example JS:
+
+const handler = PaystackPop.setup({
+key: 'PAYSTACK_PUBLIC_KEY',
+email: patientEmail,
+amount: 300 * 100,
+currency: "GHS",
+
+callback: function(response){
+window.location.href = "/payment-success";
+}
+});
+
+handler.openIframe();
+8. After Payment
+
+Status becomes:
+
+PAID
+
+Patient receives:
+
+Payment Confirmation Email
+Final Appointment Ticket PDF
+Database Struc

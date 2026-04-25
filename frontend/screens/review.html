@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Booking Confirmation - ClinicFlow</title>
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "primary": "#003d9b",
+        "secondary": "#4648d4",
+        "surface": "#f7f9fb",
+        "on-surface": "#191c1e",
+        "surface-container-lowest": "#ffffff",
+        "on-surface-variant": "#434654"
+      },
+      fontFamily: { "headline": ["Manrope"], "body": ["Inter"] },
+      borderRadius: { "xl": "1.5rem", "full": "9999px" }
+    }
+  }
+}
+</script>
+
+<style>
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+.bg-ethereal-gradient { background: linear-gradient(135deg, #003d9b 0%, #6400ab 100%); }
+.soft-elevation { box-shadow: 0 32px 64px -12px rgba(25,28,30,0.06); }
+</style>
+
+<!-- jsPDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+</head>
+<body class="bg-surface font-body text-on-surface min-h-screen flex flex-col">
+
+<main class="flex-grow flex flex-col items-center justify-start pt-12 pb-24 px-6">
+
+  <!-- Header -->
+  <div class="w-full max-w-md text-center mb-10">
+    <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-ethereal-gradient mb-6 shadow-lg shadow-primary/20">
+      <span class="material-symbols-outlined text-white text-4xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+    </div>
+    <h1 class="font-headline text-3xl font-extrabold tracking-tight text-on-surface mb-2">Booking Confirmed</h1>
+    <p class="text-on-surface-variant font-medium">Your appointment has been successfully scheduled.</p>
+  </div>
+
+  <!-- Details Card -->
+  <div class="w-full max-w-md bg-surface-container-lowest rounded-xl soft-elevation p-8 mb-8 space-y-6">
+
+    <!-- Service -->
+    <div class="flex items-center justify-between pb-4 border-b border-surface-variant/30">
+      <div class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-primary">medical_services</span>
+        <span class="text-on-surface-variant font-label text-sm uppercase tracking-wider">Service</span>
+      </div>
+      <span class="font-semibold text-on-surface" id="reviewService">Loading...</span>
+    </div>
+
+    <!-- Doctor -->
+    <div class="flex items-center justify-between pb-4 border-b border-surface-variant/30">
+      <div class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-primary">person</span>
+        <span class="text-on-surface-variant font-label text-sm uppercase tracking-wider">Doctor</span>
+      </div>
+      <span class="font-semibold text-on-surface" id="reviewDoctor">Dr. John Smith</span>
+    </div>
+
+    <!-- Date -->
+    <div class="flex items-center justify-between pb-4 border-b border-surface-variant/30">
+      <div class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-primary">calendar_today</span>
+        <span class="text-on-surface-variant font-label text-sm uppercase tracking-wider">Date</span>
+      </div>
+      <span class="font-semibold text-on-surface" id="reviewDate">Loading...</span>
+    </div>
+
+    <!-- Time -->
+    <div class="flex items-center justify-between pb-4 border-b border-surface-variant/30">
+      <div class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-primary">schedule</span>
+        <span class="text-on-surface-variant font-label text-sm uppercase tracking-wider">Time</span>
+      </div>
+      <span class="font-semibold text-on-surface" id="reviewTime">Loading...</span>
+    </div>
+
+    <!-- Patient -->
+    <div class="flex items-center justify-between pb-4 border-b border-surface-variant/30">
+      <div class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-primary">badge</span>
+        <span class="text-on-surface-variant font-label text-sm uppercase tracking-wider">Patient</span>
+      </div>
+      <span class="font-semibold text-on-surface" id="reviewName">Loading...</span>
+    </div>
+
+    <!-- Contact -->
+    <div class="pt-2 space-y-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <span class="material-symbols-outlined text-primary">mail</span>
+          <span class="text-on-surface-variant font-label text-sm uppercase tracking-wider">Email</span>
+        </div>
+        <span class="text-on-surface font-medium" id="reviewEmail">Loading...</span>
+      </div>
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <span class="material-symbols-outlined text-primary">call</span>
+          <span class="text-on-surface-variant font-label text-sm uppercase tracking-wider">Phone</span>
+        </div>
+        <span class="text-on-surface font-medium" id="reviewPhone">Loading...</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Actions -->
+  <div class="w-full max-w-md flex flex-col items-center gap-4">
+    <button id="confirmBooking" class="w-full h-14 bg-ethereal-gradient text-white font-headline font-bold rounded-full shadow-lg shadow-primary/10 hover:scale-[1.02] active:scale-95 transition-all duration-200 flex items-center justify-center gap-2">
+      <span class="material-symbols-outlined">picture_as_pdf</span>
+      Confirm Booking & Download PDF
+    </button>
+
+    <a href="/dashboard" class="w-full h-14 bg-surface-container-highest text-on-surface font-headline font-bold rounded-full shadow-sm flex items-center justify-center gap-2 hover:bg-surface-variant transition-colors">
+      <span class="material-symbols-outlined text-sm">arrow_forward</span>
+      Go to Dashboard
+    </a>
+
+    <div class="flex items-center gap-2 text-emerald-600 py-2">
+      <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+      <p class="text-xs font-semibold tracking-wide uppercase">Your booking is confirmed and in progress.</p>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  document.addEventListener("DOMContentLoaded", async () => {
+  
+    const API_BASE = `${window.location.origin}/api`;
+  
+    const bookingData = JSON.parse(localStorage.getItem("bookingData"));
+    if (!bookingData) {
+      alert("No booking found!");
+      window.location.href = "/booking";
+      return;
+    }
+  
+    const fixedDoctorName = "Dr. John Smith";
+    document.getElementById("reviewDoctor").textContent = fixedDoctorName;
+  
+    try {
+      const res = await fetch(`${API_BASE}/services`);
+      const services = await res.json();
+  
+      const selectedService = services.find(s => s.id == bookingData.service_id);
+  
+      const timeSlots = {
+        1:"09:00 - 09:30",
+        2:"09:30 - 10:00",
+        3:"10:00 - 10:30",
+        4:"10:30 - 11:00",
+        5:"11:00 - 11:30",
+        6:"11:30 - 12:00"
+      };
+  
+      document.getElementById("reviewService").textContent =
+        selectedService?.service_name || "Not found";
+  
+      document.getElementById("reviewDate").textContent =
+        bookingData.date || "Not selected";
+  
+      document.getElementById("reviewTime").textContent =
+        timeSlots[bookingData.time_slot_id] || "Not selected";
+  
+      document.getElementById("reviewName").textContent =
+        bookingData.fullName || "Not provided";
+  
+      document.getElementById("reviewEmail").textContent =
+        bookingData.email || "Not provided";
+  
+      document.getElementById("reviewPhone").textContent =
+        bookingData.phone || "Not provided";
+  
+    } catch(err) {
+      console.error(err);
+      alert("Failed to load booking details.");
+    }
+  
+    document.getElementById("confirmBooking").addEventListener("click", async () => {
+  
+      const token = localStorage.getItem("token");
+  
+      const payload = {
+        patient_name: bookingData.fullName,
+        patient_email: bookingData.email,
+        service_id: bookingData.service_id,
+        doctor_id: 14,
+        time_slot_id: bookingData.time_slot_id
+      };
+  
+      try {
+        const res = await fetch(`${API_BASE}/appointments`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            ...(token && { Authorization: `Bearer ${token}` })
+          },
+          body: JSON.stringify(payload)
+        });
+  
+        if (!res.ok) {
+          const text = await res.text();
+          throw new Error(text);
+        }
+  
+        const data = await res.json();
+  
+        // 📄 Generate PDF
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+  
+        doc.setFontSize(16);
+        doc.text("Hospital Appointment Receipt", 20, 20);
+  
+        doc.setFontSize(12);
+        doc.text(`Booking ID: ${data.appointment_id}`, 20, 40);
+        doc.text(`Service: ${document.getElementById("reviewService").textContent}`, 20, 50);
+        doc.text(`Doctor: ${fixedDoctorName}`, 20, 60);
+        doc.text(`Date: ${document.getElementById("reviewDate").textContent}`, 20, 70);
+        doc.text(`Time: ${document.getElementById("reviewTime").textContent}`, 20, 80);
+        doc.text(`Name: ${document.getElementById("reviewName").textContent}`, 20, 100);
+        doc.text(`Email: ${document.getElementById("reviewEmail").textContent}`, 20, 110);
+        doc.text(`Phone: ${document.getElementById("reviewPhone").textContent}`, 20, 120);
+  
+        doc.save("appointment-receipt.pdf");
+  
+        // 🧹 Clear booking data
+        localStorage.removeItem("bookingData");
+  
+        // 🔥 SMART REDIRECT FLOW
+        if (!token) {
+          // Save redirect target
+          localStorage.setItem("redirectAfterLogin", "/dashboard");
+  
+          alert("Booking confirmed! Please login to continue.");
+          window.location.href = "/login";
+        } else {
+          alert("Booking confirmed!");
+          window.location.href = "/dashboard";
+        }
+  
+      } catch(err) {
+        console.error(err);
+        alert("Something went wrong.");
+      }
+    });
+  
+  });
+  </script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Login | CarePulse</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+  body { font-family: 'Inter', sans-serif; }
+  h1,h2,h3 { font-family: 'Manrope', sans-serif; }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+  .bg-ethereal-gradient { background: radial-gradient(circle at top right, #e1e0ff 0%, transparent 40%), radial-gradient(circle at bottom left, #dae2ff 0%, transparent 40%), #f7f9fb; }
+  .glass-panel { background: rgba(255,255,255,0.7); backdrop-filter: blur(20px); }
+</style>
+</head>
+<body class="bg-ethereal-gradient min-h-screen flex flex-col">
+
+<main class="flex-grow flex items-center justify-center p-6 relative overflow-hidden">
+  <!-- Decorative Background Icons -->
+  <div class="absolute top-20 right-[15%] opacity-10 pointer-events-none">
+    <span class="material-symbols-outlined text-[12rem] text-primary">medical_services</span>
+  </div>
+  <div class="absolute bottom-10 left-[10%] opacity-10 pointer-events-none">
+    <span class="material-symbols-outlined text-[8rem] text-tertiary">health_and_safety</span>
+  </div>
+
+  <!-- Login Card -->
+  <div class="w-full max-w-[480px] z-10">
+    <div class="glass-panel border border-white/50 rounded-xl shadow-[0_32px_64px_-12px_rgba(25,28,30,0.08)] p-10 md:p-12">
+      
+      <!-- Header -->
+      <div class="text-center mb-10">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-fixed mb-4">
+          <span class="material-symbols-outlined text-primary text-3xl">local_hospital</span>
+        </div>
+        <h1 class="text-3xl font-extrabold text-on-surface tracking-tight mb-2">Welcome Back</h1>
+        <p class="text-on-surface-variant font-medium">Log in to manage your appointments</p>
+      </div>
+
+      <!-- Form -->
+      <form id="loginForm" class="space-y-6">
+        <!-- Email Field -->
+        <div>
+          <label class="block text-xs font-semibold text-on-surface-variant uppercase tracking-wider mb-2 ml-1" for="email">
+            Email Address
+          </label>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <span class="material-symbols-outlined text-outline text-xl">mail</span>
+            </div>
+            <input 
+              id="email" 
+              name="email" 
+              type="email" 
+              placeholder="name@hospital.com" 
+              required
+              class="block w-full pl-11 pr-4 py-4 bg-gray-100 dark:bg-surface-container-low border-transparent rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary/40 focus:bg-surface-container-lowest transition-all duration-200 placeholder:text-outline/60 text-on-surface"
+            />
+          </div>
+        </div>
+      
+        <!-- Password Field -->
+        <div>
+          <div class="flex justify-between items-center mb-2 ml-1">
+            <label class="block text-xs font-semibold text-on-surface-variant uppercase tracking-wider" for="password">
+              Password
+            </label>
+            <a class="text-xs font-semibold text-primary hover:text-primary-container transition-colors" href="#">
+              Forgot Password?
+            </a>
+          </div>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <span class="material-symbols-outlined text-outline text-xl">lock</span>
+            </div>
+            <input 
+              id="password" 
+              name="password" 
+              type="password" 
+              placeholder="••••••••" 
+              required
+              class="block w-full pl-11 pr-4 py-4 bg-gray-100 dark:bg-surface-container-low border-transparent rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary/40 focus:bg-surface-container-lowest transition-all duration-200 placeholder:text-outline/60 text-on-surface"
+            />
+          </div>
+        </div>
+      
+        <!-- Submit Button -->
+        <div class="pt-2">
+          <button type="submit"
+            class="w-full py-4 px-6 rounded-full bg-blue-600 text-white font-bold text-lg shadow-lg shadow-blue-300 hover:bg-blue-700 active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2">
+            <span>Log In</span>
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </button>
+        </div>
+      </form>
+
+      <!-- Sign Up Link -->
+      <div class="mt-10 text-center">
+        <p class="text-on-surface-variant text-sm font-medium">
+          Don't have an account? 
+          <a class="text-primary font-bold hover:underline underline-offset-4 ml-1 transition-all" href="/register">Sign Up here</a>
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Trust Indicators -->
+    <div class="mt-8 flex justify-center items-center gap-6 opacity-40">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-sm">verified_user</span>
+        <span class="text-[10px] font-bold uppercase tracking-widest">Secure Access</span>
+      </div>
+      <div class="w-1 h-1 bg-outline rounded-full"></div>
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-sm">encrypted</span>
+        <span class="text-[10px] font-bold uppercase tracking-widest">HIPAA Compliant</span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="w-full py-8 mt-auto border-t border-slate-200 bg-slate-50">
+  <div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto gap-4">
+    <p class="text-xs font-medium Inter text-slate-500">© 2024 CarePulse Health Systems. All rights reserved.</p>
+    <div class="flex gap-6">
+      <a class="text-xs font-medium Inter text-slate-500 hover:text-blue-800 transition-opacity duration-300" href="#">Privacy Policy</a>
+      <a class="text-xs font-medium Inter text-slate-500 hover:text-blue-800 transition-opacity duration-300" href="#">Terms of Service</a>
+      <a class="text-xs font-medium Inter text-slate-500 hover:text-blue-800 transition-opacity duration-300" href="#">Support</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("loginForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    const baseUrl = `${window.location.origin}/api/auth`;
+
+    try {
+      const res = await fetch(`${baseUrl}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+      if (data.error) return alert(data.error);
+
+      // Save JWT
+      localStorage.setItem("token", data.token);
+
+      alert(`Welcome back, ${data.user.full_name}!`);
+      window.location.href = "/dashboard";
+    } catch (err) {
+      console.error(err);
+      alert("Login failed. Try again.");
+    }
+  });
+</script>
+</body>
+</html>

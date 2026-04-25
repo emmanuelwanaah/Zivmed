@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HealthSync | Doctor Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#eceef0",
+                        "inverse-surface": "#2d3133",
+                        "on-tertiary-fixed-variant": "#6900b3",
+                        "on-primary-container": "#c4d2ff",
+                        "secondary-fixed": "#e1e0ff",
+                        "tertiary-container": "#8025ce",
+                        "tertiary-fixed": "#f0dbff",
+                        "surface-variant": "#e0e3e5",
+                        "secondary-fixed-dim": "#c0c1ff",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#0c56d0",
+                        "surface-dim": "#d8dadc",
+                        "surface-bright": "#f7f9fb",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-surface": "#191c1e",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#6063ee",
+                        "on-secondary-fixed-variant": "#2f2ebe",
+                        "on-primary-fixed-variant": "#0040a2",
+                        "on-tertiary-fixed": "#2c0051",
+                        "on-error": "#ffffff",
+                        "primary": "#003d9b",
+                        "surface": "#f7f9fb",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#6400ab",
+                        "background": "#f7f9fb",
+                        "primary-fixed": "#dae2ff",
+                        "inverse-primary": "#b2c5ff",
+                        "tertiary-fixed-dim": "#ddb7ff",
+                        "on-secondary-container": "#fffbff",
+                        "on-background": "#191c1e",
+                        "on-primary-fixed": "#001848",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-tertiary-container": "#e6c7ff",
+                        "outline": "#737685",
+                        "on-surface-variant": "#434654",
+                        "outline-variant": "#c3c6d6",
+                        "surface-container-high": "#e6e8ea",
+                        "secondary": "#4648d4",
+                        "primary-container": "#0052cc",
+                        "on-secondary-fixed": "#07006c"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .premium-gradient {
+            background: linear-gradient(135deg, #003d9b 0%, #6400ab 100%);
+        }
+    </style>
+</head>
+<body class="bg-background font-body text-on-surface antialiased">
+<!-- Desktop Sidebar -->
+<aside class="fixed left-0 top-0 h-full z-40 bg-slate-50 dark:bg-slate-900 h-screen w-64 hidden lg:flex flex-col border-r border-slate-200 dark:border-slate-800 font-manrope text-sm">
+<div class="px-6 py-8">
+<div class="flex items-center gap-3 mb-10">
+<div class="w-10 h-10 rounded-xl premium-gradient flex items-center justify-center text-white">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">health_and_safety</span>
+</div>
+<span class="text-2xl font-bold tracking-tight text-blue-900 dark:text-slate-100">HealthSync</span>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-blue-800 dark:text-blue-300 font-bold border-r-4 border-blue-700 hover:bg-blue-50 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span> Dashboard
+                </a>
+                <a href="/doctor/appointments/approved">
+                  <span class="material-symbols-outlined">calendar_today</span>
+                  Appointments
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-blue-50 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span> Patients
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-blue-50 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span> Settings
+                </a>
+</nav>
+</div>
+<div class="mt-auto p-6 border-t border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-3 mb-6">
+<img alt="Doctor Profile" class="w-10 h-10 rounded-full object-cover" data-alt="professional portrait of a confident female doctor with a kind expression in a bright clinical setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmu4wUaKy9m8arBc0aY4DvXoCeojWx2YHXVh598_1oET3kzSW0c3yG04XUMARrMt1CipruicOZ-MqNhSRBTxVTLdJO0cRrNIAc0n5IgLNRy8BI_8vvrDnhDK4s3msSi50M1QKnKCmxWoZ2VyaX21635YaG0hzFAEtLkCow9P27ldAqK6k23eWTqzQy_8zASPgXV0ckQ_qvRsTY3ZjPlIuBdmIjuuvJuI6ufzXjNfqqCsjTkkgb0Z0oIMJiJNURyBE9X3t60_pCTiU"/>
+<div>
+<p class="font-bold text-on-surface">Dr. John Smith</p>
+<p class="text-xs text-on-surface-variant">General</p>
+</div>
+</div>
+<button class="w-full flex items-center justify-center gap-2 py-2 text-error font-medium hover:bg-error-container/20 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="logout">logout</span> Logout
+            </button>
+</div>
+</aside>
+<!-- Mobile Top Bar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md flex justify-between items-center px-6 py-3 w-full shadow-sm lg:hidden">
+<span class="text-2xl font-bold tracking-tight text-blue-900 dark:text-slate-100">HealthSync</span>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+<img alt="Doctor Profile Avatar" class="w-8 h-8 rounded-full" data-alt="close up avatar of a professional medical doctor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCO6yZK8atdm0aEpsi5fmL6GRdbFv6SjXYhnDZIrnb3VJz-Yskd-i47niozwvUy9Ixa80PctfnRcoYTmb_wcl_Nr20Z46nbU5v0h4kgGIbxbyliAqOQqNLQuN8rPuRnH2NhI453_t-X3Zk8hKLyVwPLqYas1Ucq7cyJkGI7w6NBYIKMa7ZEnrnL-geOznWxDF4qPZhvZ54smdxN-7DAUsjJR9nUqBItdqS5w6giWM4GjERGN_ZqJnxgts7XVuXzfX7Wsrq_GDJahkk"/>
+</div>
+</header>
+<!-- Main Content -->
+<main class="lg:ml-64 pt-20 lg:pt-0 min-h-screen pb-24 lg:pb-12">
+<div class="max-w-7xl mx-auto px-6 lg:px-12 py-8 lg:py-12">
+<!-- Hero Section -->
+<section class="mb-12">
+<h1 class="font-headline text-4xl lg:text-5xl font-extrabold text-on-surface tracking-tight mb-3">
+                    Welcome back, Dr. John Smith
+                </h1>
+<p class="text-on-surface-variant text-lg lg:text-xl font-body">
+                    You have <span class="text-primary font-semibold">8 pending appointments</span> to review today.
+                </p>
+</section>
+
+<!-- Appointments Table Section -->
+<section class="mb-12">
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline text-2xl font-bold text-on-surface">Current Appointments</h2>
+<div class="flex gap-2">
+<button class="p-2 rounded-xl bg-surface-container-low text-on-surface-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined" data-icon="filter_list">filter_list</span>
+</button>
+<button class="p-2 rounded-xl bg-surface-container-low text-on-surface-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-3xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] border border-outline-variant/10 overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="px-6 py-4 text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Patient</th>
+<th class="px-6 py-4 text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Service</th>
+<th class="px-6 py-4 text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Date &amp; Time</th>
+<th class="px-6 py-4 text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 text-xs font-semibold text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody id="appointmentsTable" class="divide-y divide-surface-container-low">
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Empty State Visualization (Hidden but present for structural context) -->
+<section class="hidden py-20 flex flex-col items-center justify-center text-center">
+<div class="w-24 h-24 rounded-full bg-surface-container-low flex items-center justify-center text-slate-300 mb-6">
+<span class="material-symbols-outlined text-5xl" data-icon="event_busy">event_busy</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-2">No pending appointments</h3>
+<p class="text-on-surface-variant max-w-xs">You're all caught up! New appointment requests will appear here as they come in.</p>
+</section>
+</div>
+</main>
+<!-- Mobile Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-white/90 dark:bg-slate-950/90 backdrop-blur-xl lg:hidden rounded-t-3xl shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
+<a class="flex flex-col items-center justify-center text-blue-700 dark:text-blue-400 bg-blue-50/50 dark:bg-blue-900/30 rounded-2xl px-4 py-1 scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-[10px] font-medium font-inter">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:bg-slate-100 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="event">event</span>
+<span class="text-[10px] font-medium font-inter">Bookings</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:bg-slate-100 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[10px] font-medium font-inter">Patients</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:bg-slate-100 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-[10px] font-medium font-inter">Settings</span>
+</a>
+</nav>
+<!-- Contextual FAB for quick action -->
+<button class="fixed bottom-24 right-6 lg:bottom-12 lg:right-12 w-16 h-16 rounded-full premium-gradient text-white shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-transform z-40">
+<span class="material-symbols-outlined text-3xl" data-icon="add" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+<script>
+  const token = localStorage.getItem("token");
+  const API_BASE = `${window.location.origin}/api`;
+
+  // 🔒 Protect page
+  if (!token) {
+    window.location.href = "/doctor/login";
+  }
+
+  // =========================
+  // ✅ TOKEN VALIDATION
+  // =========================
+  async function validateToken() {
+    try {
+      const res = await fetch(`${API_BASE}/doctor/auth/validate-token`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
+      // 🔥 SESSION EXPIRED
+      if (res.status === 401) {
+        console.warn("Session expired");
+        localStorage.removeItem("token");
+        window.location.href = "/doctor/login";
+        return;
+      }
+
+      const data = await res.json();
+
+      if (!data.valid || data.user.role !== "doctor") {
+        console.warn("Invalid session");
+        localStorage.removeItem("token");
+        window.location.href = "/doctor/login";
+      }
+
+    } catch (err) {
+      console.error("Token validation failed:", err);
+      // ❌ Do NOT logout on network issues
+    }
+  }
+
+  // =========================
+  // 🚪 LOGOUT
+  // =========================
+  function logout() {
+    localStorage.removeItem("token");
+    window.location.href = "/doctor/login";
+  }
+
+  document.querySelectorAll("[data-icon='logout']").forEach(el => {
+    el.closest("button").onclick = logout;
+  });
+
+  // =========================
+  // 📥 LOAD APPOINTMENTS
+  // =========================
+  async function loadAppointments() {
+    try {
+      const res = await fetch(`${API_BASE}/doctor/appointments`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
+      // 🔥 HANDLE SESSION EXPIRY
+      if (res.status === 401) {
+        console.warn("Session expired");
+        localStorage.removeItem("token");
+        window.location.href = "/doctor/login";
+        return;
+      }
+
+      const data = await res.json();
+      const tbody = document.getElementById("appointmentsTable");
+      tbody.innerHTML = "";
+
+      if (!res.ok) {
+        console.warn(data.error || "Failed to load appointments");
+        return;
+      }
+
+      data.forEach(app => {
+        if (app.status === "pending") {
+
+          const initials = app.patient_name
+            .split(" ")
+            .map(n => n[0])
+            .join("")
+            .toUpperCase();
+
+          const tr = document.createElement("tr");
+
+          tr.innerHTML = `
+            <td class="px-6 py-5">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-primary-fixed text-primary flex items-center justify-center font-bold text-sm">
+                  ${initials}
+                </div>
+                <div>
+                  <p class="font-semibold text-on-surface">${app.patient_name}</p>
+                  <p class="text-xs text-on-surface-variant">${app.patient_email}</p>
+                </div>
+              </div>
+            </td>
+
+            <td class="px-6 py-5">
+              ${app.service_name}
+            </td>
+
+            <td class="px-6 py-5">
+              ${new Date(app.created_at).toLocaleDateString()} <br>
+              <span class="text-xs text-gray-500">
+                ${new Date(app.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+              </span>
+            </td>
+
+            <td class="px-6 py-5">
+              <span class="px-3 py-1 bg-amber-100 text-amber-700 text-xs font-bold rounded-full">
+                Pending
+              </span>
+            </td>
+
+            <td class="px-6 py-5 text-right">
+              <div class="flex justify-end gap-2">
+
+                <button onclick="updateStatus(${app.id}, 'approve')"
+                  class="px-4 py-1.5 bg-emerald-600 text-white rounded-full text-xs font-semibold">
+                  Approve
+                </button>
+
+                <button onclick="updateStatus(${app.id}, 'reject')"
+                  class="px-4 py-1.5 bg-red-600 text-white rounded-full text-xs font-semibold">
+                  Reject
+                </button>
+
+              </div>
+            </td>
+          `;
+
+          tbody.appendChild(tr);
+        }
+      });
+
+    } catch (err) {
+      console.error("Load appointments error:", err);
+      console.warn("Network issue — retry later");
+    }
+  }
+
+  // =========================
+  // 🔄 UPDATE STATUS
+  // =========================
+  async function updateStatus(id, action) {
+    try {
+      if (action === "approve") {
+        const amount = prompt("Enter consultation fee:");
+        if (!amount) return;
+
+        const res = await fetch(`${API_BASE}/doctor/appointments/approve/${id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+          },
+          body: JSON.stringify({ amount })
+        });
+
+        // 🔥 HANDLE SESSION EXPIRY
+        if (res.status === 401) {
+          console.warn("Session expired");
+          localStorage.removeItem("token");
+          window.location.href = "/doctor/login";
+          return;
+        }
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          console.warn(data.error);
+          return;
+        }
+
+        alert("Payment link sent ✅");
+
+      } else {
+        // reject logic here
+      }
+
+      loadAppointments();
+
+    } catch (err) {
+      console.error("Update error:", err);
+      console.warn("Action failed");
+    }
+  }
+
+  // =========================
+  // 🚀 INIT
+  // =========================
+  validateToken();
+  loadAppointments();
+</script>
+</body>
+</html>

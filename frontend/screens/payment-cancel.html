@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Payment Cancelled - Clinical Ethereal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-secondary-fixed": "#07006c",
+            "tertiary-container": "#8025ce",
+            "on-surface": "#191c1e",
+            "inverse-primary": "#b2c5ff",
+            "on-error": "#ffffff",
+            "surface-bright": "#f7f9fb",
+            "surface-dim": "#d8dadc",
+            "on-background": "#191c1e",
+            "secondary": "#4648d4",
+            "error": "#ba1a1a",
+            "on-error-container": "#93000a",
+            "secondary-fixed-dim": "#c0c1ff",
+            "primary-fixed": "#dae2ff",
+            "inverse-surface": "#2d3133",
+            "tertiary": "#6400ab",
+            "primary-container": "#0052cc",
+            "surface-container-highest": "#e0e3e5",
+            "on-surface-variant": "#434654",
+            "on-primary-fixed-variant": "#0040a2",
+            "outline": "#737685",
+            "on-primary": "#ffffff",
+            "on-primary-container": "#c4d2ff",
+            "surface-container": "#eceef0",
+            "on-tertiary-fixed": "#2c0051",
+            "secondary-fixed": "#e1e0ff",
+            "on-tertiary": "#ffffff",
+            "tertiary-fixed": "#f0dbff",
+            "on-secondary-fixed-variant": "#2f2ebe",
+            "surface-tint": "#0c56d0",
+            "error-container": "#ffdad6",
+            "secondary-container": "#6063ee",
+            "outline-variant": "#c3c6d6",
+            "inverse-on-surface": "#eff1f3",
+            "on-tertiary-fixed-variant": "#6900b3",
+            "surface-container-high": "#e6e8ea",
+            "surface": "#f7f9fb",
+            "on-secondary": "#ffffff",
+            "surface-container-low": "#f2f4f6",
+            "on-secondary-container": "#fffbff",
+            "tertiary-fixed-dim": "#ddb7ff",
+            "surface-variant": "#e0e3e5",
+            "surface-container-lowest": "#ffffff",
+            "on-primary-fixed": "#001848",
+            "background": "#f7f9fb",
+            "on-tertiary-container": "#e6c7ff",
+            "primary": "#003d9b",
+            "primary-fixed-dim": "#b2c5ff"
+          },
+          fontFamily: {
+            "headline": ["Manrope"],
+            "body": ["Inter"],
+            "label": ["Inter"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "2xl": "1.5rem",
+            "3xl": "2rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+    .bg-blobs {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+      background-color: #f7f9fb;
+    }
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.4;
+    }
+  </style>
+</head>
+<body class="font-body text-on-surface bg-background min-h-screen flex flex-col">
+<!-- Background Blobs -->
+<div class="bg-blobs">
+<div class="blob bg-primary w-[500px] h-[500px] -top-48 -left-24"></div>
+<div class="blob bg-tertiary w-[400px] h-[400px] top-1/2 -right-24"></div>
+<div class="blob bg-secondary w-[300px] h-[300px] bottom-0 left-1/4"></div>
+</div>
+<!-- Top AppBar (JSON Authority) -->
+
+<!-- Main Canvas -->
+<main class="flex-grow flex items-center justify-center px-4 pt-24 pb-32">
+<div class="max-w-md w-full glass-card rounded-3xl p-8 md:p-12 text-center shadow-2xl">
+<!-- Status Icon -->
+<div class="mb-8 relative inline-block">
+<div class="absolute inset-0 bg-error/10 blur-2xl rounded-full scale-150"></div>
+<div class="relative w-24 h-24 bg-error-container/30 rounded-full flex items-center justify-center text-[#EF4444]">
+<span class="material-symbols-outlined !text-5xl" data-icon="error_outline">error_outline</span>
+</div>
+</div>
+<!-- Typography Header -->
+<h1 class="font-headline text-3xl md:text-4xl font-bold text-on-surface mb-3 tracking-tight">Payment Cancelled</h1>
+<p class="text-on-surface-variant font-medium text-lg mb-2">Your payment was not completed</p>
+<p class="text-outline font-body text-sm mb-10">If this was a mistake, you can try again.</p>
+<!-- Action Buttons -->
+<div class="space-y-4">
+<!-- Primary Action -->
+
+<!-- Secondary Action -->
+
+</div>
+<!-- Support Link -->
+<div class="mt-8">
+<a class="inline-flex items-center gap-2 text-primary font-medium hover:underline transition-all" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="contact_support">contact_support</span>
+<span>Contact Support</span>
+</a>
+</div>
+
+
+</div>
+</main>
+
+<div class="hidden">
+<img alt="" data-alt="soft ethereal gradient background with blurred organic shapes in shades of deep navy blue and soft violet purple" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOmlmpu_Z3ay6KWkQXGv2NYjhRKFXh8o2oLwBm0_Z_kGXiJGsI_KODq_ulG-TJgNTpqXAdbig5lfE-GCc251_sAb3RKxW0QS8l2H0jQHpVp88wUS5QO2wxSslCvFdVVPy_YWGWTJevZ8zf25uj0a01CKZZblq4jwMXov9yvZvLFdvoa6oGHYm6ZViD1QIWdvgendqLTZhOyqBCLZHE4wkzUfq4qcQ2FUUm0ngbLlH1H74zWBa8kABddQyzHWG1quc9PM9h0mM7wGo"/>
+</div>
+</body></html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact Us | Ziv Specialist Medical Centre</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "outline": "#737685",
+              "secondary-fixed-dim": "#c0c1ff",
+              "on-background": "#191c1e",
+              "primary-fixed-dim": "#b2c5ff",
+              "surface-variant": "#e0e3e5",
+              "on-primary-fixed": "#001848",
+              "surface-container-highest": "#e0e3e5",
+              "tertiary-fixed": "#f0dbff",
+              "primary-container": "#0052cc",
+              "surface-container": "#eceef0",
+              "inverse-surface": "#2d3133",
+              "error-container": "#ffdad6",
+              "surface-dim": "#d8dadc",
+              "on-tertiary-fixed-variant": "#6900b3",
+              "error": "#ba1a1a",
+              "tertiary": "#6400ab",
+              "surface-tint": "#0c56d0",
+              "on-surface-variant": "#434654",
+              "on-secondary-fixed": "#07006c",
+              "inverse-on-surface": "#eff1f3",
+              "background": "#f7f9fb",
+              "on-tertiary-container": "#e6c7ff",
+              "on-primary": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "on-primary-container": "#c4d2ff",
+              "secondary-fixed": "#e1e0ff",
+              "outline-variant": "#c3c6d6",
+              "on-secondary-fixed-variant": "#2f2ebe",
+              "secondary": "#4648d4",
+              "primary": "#003d9b",
+              "on-secondary": "#ffffff",
+              "on-error-container": "#93000a",
+              "tertiary-fixed-dim": "#ddb7ff",
+              "surface": "#f7f9fb",
+              "tertiary-container": "#8025ce",
+              "surface-container-high": "#e6e8ea",
+              "on-tertiary-fixed": "#2c0051",
+              "on-primary-fixed-variant": "#0040a2",
+              "inverse-primary": "#b2c5ff",
+              "primary-fixed": "#dae2ff",
+              "on-secondary-container": "#fffbff",
+              "surface-container-low": "#f2f4f6",
+              "surface-bright": "#f7f9fb",
+              "on-surface": "#191c1e",
+              "secondary-container": "#6063ee",
+              "on-error": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-effect {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+      }
+      .blob {
+        position: absolute;
+        filter: blur(80px);
+        z-index: -1;
+        opacity: 0.4;
+      }
+    </style>
+</head>
+<body class="bg-background font-body text-on-surface antialiased">
+<!-- Background Blobs -->
+<div class="blob w-[500px] h-[500px] bg-primary-fixed top-[-100px] right-[-100px] rounded-full"></div>
+<div class="blob w-[400px] h-[400px] bg-tertiary-fixed bottom-[10%] left-[-100px] rounded-full"></div>
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl shadow-sm dark:shadow-none">
+<div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+<div class="text-xl font-bold tracking-tighter text-blue-900 dark:text-blue-100 font-headline">
+                Ziv Specialist Medical Centre
+            </div>
+<div class="hidden md:flex items-center gap-8 font-headline font-semibold tracking-tight">
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-300 transition-colors" href="#">Home</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-300 transition-colors" href="#">Specialists</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-300 transition-colors" href="#">Services</a>
+<a class="text-blue-700 dark:text-blue-400 border-b-2 border-blue-700 dark:border-blue-400 pb-1" href="#">Contact</a>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-headline font-semibold text-sm hover:opacity-80 transition-all active:scale-95 duration-200">
+                Book Appointment
+            </button>
+</div>
+<div class="bg-slate-100/50 dark:bg-slate-800/50 h-[1px] w-full"></div>
+</nav>
+<main class="pt-32 pb-20 px-6 max-w-7xl mx-auto">
+<!-- Hero Section -->
+<header class="mb-16 md:mb-24 text-center max-w-3xl mx-auto">
+<h1 class="font-headline text-5xl md:text-6xl font-extrabold tracking-tight text-on-background mb-6">
+                Contact Us
+            </h1>
+<p class="text-lg md:text-xl text-on-surface-variant leading-relaxed font-body">
+                We’re here to help you with appointments, payments, and inquiries. Experience specialized care tailored to your needs.
+            </p>
+</header>
+<!-- Main Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- Left Column: Contact Info -->
+<div class="lg:col-span-5 space-y-8">
+<div class="bg-surface-container-low rounded-2xl p-8 md:p-10">
+<h2 class="font-headline text-2xl font-bold mb-8 text-primary">Get in Touch</h2>
+<div class="space-y-10">
+<!-- Address -->
+<div class="flex gap-5">
+<div class="flex-shrink-0 w-12 h-12 rounded-xl bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-on-surface mb-1">Our Location</h3>
+<p class="text-on-surface-variant leading-relaxed">123 Healthcare Ave, Suite 500<br/>Medical District, NY 10001</p>
+</div>
+</div>
+<!-- Phone -->
+<div class="flex gap-5">
+<div class="flex-shrink-0 w-12 h-12 rounded-xl bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="call">call</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-on-surface mb-1">Phone Number</h3>
+<p class="text-on-surface-variant">+1 555-010-9988</p>
+</div>
+</div>
+<!-- Email -->
+<div class="flex gap-5">
+<div class="flex-shrink-0 w-12 h-12 rounded-xl bg-tertiary-container/20 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-on-surface mb-1">Email Support</h3>
+<p class="text-on-surface-variant">support@zivmedical.com</p>
+</div>
+</div>
+<!-- Hours -->
+<div class="flex gap-5">
+<div class="flex-shrink-0 w-12 h-12 rounded-xl bg-outline-variant/30 flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined" data-icon="schedule">schedule</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-on-surface mb-1">Working Hours</h3>
+<div class="text-on-surface-variant space-y-1">
+<p class="flex justify-between gap-8"><span>Mon-Fri:</span> <span>8am - 8pm</span></p>
+<p class="flex justify-between gap-8"><span>Sat:</span> <span>9am - 4pm</span></p>
+<p class="flex justify-between gap-8"><span>Sun:</span> <span>Emergency Only</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Subtle Card for Secondary Call to Action -->
+<div class="bg-primary/5 border border-primary/10 rounded-2xl p-6 flex items-center justify-between">
+<div>
+<p class="font-headline font-bold text-primary">Need Emergency Care?</p>
+<p class="text-sm text-on-surface-variant">Our emergency line is open 24/7</p>
+</div>
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="emergency">emergency</span>
+</div>
+</div>
+<!-- Right Column: Glassmorphism Form -->
+<div class="lg:col-span-7">
+<div class="glass-effect rounded-2xl p-8 md:p-12 shadow-2xl shadow-primary/5 border border-white/40">
+<h2 class="font-headline text-3xl font-bold mb-8 text-on-background">Send a Message</h2>
+<form action="#" class="space-y-6" method="POST">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant font-label">Full Name</label>
+<input class="w-full px-5 py-4 rounded-xl bg-surface-container-highest border-none focus:ring-2 focus:ring-primary/40 placeholder:text-on-surface-variant/50 transition-all outline-none" placeholder="John Doe" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant font-label">Email Address</label>
+<input class="w-full px-5 py-4 rounded-xl bg-surface-container-highest border-none focus:ring-2 focus:ring-primary/40 placeholder:text-on-surface-variant/50 transition-all outline-none" placeholder="john@example.com" type="email"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant font-label">Phone Number</label>
+<input class="w-full px-5 py-4 rounded-xl bg-surface-container-highest border-none focus:ring-2 focus:ring-primary/40 placeholder:text-on-surface-variant/50 transition-all outline-none" placeholder="+1 (555) 000-0000" type="tel"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant font-label">Your Message</label>
+<textarea class="w-full px-5 py-4 rounded-xl bg-surface-container-highest border-none focus:ring-2 focus:ring-primary/40 placeholder:text-on-surface-variant/50 transition-all outline-none resize-none" placeholder="How can we help you today?" rows="5"></textarea>
+</div>
+<button class="w-full py-5 rounded-full bg-gradient-to-r from-primary to-tertiary text-on-primary font-headline font-bold text-lg shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all duration-300" type="submit">
+                            Send Message
+                        </button>
+</form>
+</div>
+</div>
+</div>
+<!-- Map Section -->
+<section class="mt-24">
+<div class="relative w-full h-[450px] rounded-2xl overflow-hidden shadow-sm">
+<div class="absolute inset-0 bg-surface-container-highest flex items-center justify-center">
+<!-- Map Placeholder Image -->
+<img alt="Location Map" class="w-full h-full object-cover opacity-60 grayscale brightness-110" data-alt="Modern minimalist city map view showing streets and medical district buildings in soft blue and grey tones" data-location="New York" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYP5zgEwcBSb7J2ZTNLHbGU1HHE2D9pkWZQebxiLfuVoUuhchThlQK95ePQ0qTD_GqnJ5syAoDMO9qOIedTA1YpkiphDm3IBLj5FBeDo53zhwKhCoh27TA6IUon7q35JPUqx2HbUsPRqbIwxZByjzYvbZkignNnA4LgAMTH4dMu0Rjxz_83--As3pvvBQYnI7P-tZrFv_QRaHjlt9Fbjl0DrhOLYmzIz1frcFx_R-oBr_NXlYb01fxNO8VrAh4CfrBuuX8s7IIY_A"/>
+<!-- Map Overlay Pin -->
+<div class="absolute flex flex-col items-center">
+<div class="bg-primary text-on-primary px-4 py-2 rounded-xl shadow-xl font-headline font-bold text-sm mb-2">
+                            Ziv Medical Centre
+                        </div>
+<span class="material-symbols-outlined text-primary text-5xl" data-icon="location_on" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-50 dark:bg-slate-900 w-full py-12 border-t border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="font-manrope font-bold text-slate-900 dark:text-slate-100 font-headline">
+                Ziv Specialist Medical Centre
+            </div>
+<div class="flex flex-wrap justify-center gap-6 font-inter text-sm antialiased text-slate-500 dark:text-slate-400">
+<a class="hover:text-blue-500 dark:hover:text-blue-300 transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-blue-500 dark:hover:text-blue-300 transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-blue-500 dark:hover:text-blue-300 transition-colors" href="#">Accessibility</a>
+<a class="hover:text-blue-500 dark:hover:text-blue-300 transition-colors" href="#">Emergency Contact</a>
+</div>
+<p class="text-slate-500 dark:text-slate-400 font-inter text-sm antialiased text-center md:text-right">
+                © 2024 Ziv Specialist Medical Centre. All rights reserved.
+            </p>
+</div>
+</footer>
+</body></html>

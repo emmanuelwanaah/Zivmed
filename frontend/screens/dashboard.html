@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>HealthSync | Patient Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<script id="tailwind-config">
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                "tertiary-container": "#8025ce",
+                "on-surface-variant": "#434654",
+                "surface-container-low": "#f2f4f6",
+                "surface-container-lowest": "#ffffff",
+                "outline-variant": "#c3c6d6",
+                "secondary-container": "#6063ee",
+                "primary-fixed": "#dae2ff",
+                "primary": "#003d9b",
+                "secondary": "#4648d4",
+                "tertiary": "#6400ab",
+                "on-surface": "#191c1e",
+                "background": "#f7f9fb",
+            },
+            fontFamily: { headline:["Manrope"], body:["Inter"], label:["Inter"] },
+            borderRadius: { DEFAULT:"0.25rem", lg:"0.5rem", xl:"0.75rem", full:"9999px" },
+        },
+    },
+}
+</script>
+<style>
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+.glass-effect { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+</style>
+</head>
+<body class="bg-background font-body text-on-surface antialiased">
+
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm dark:shadow-none">
+  <div class="flex justify-between items-center px-6 py-4 w-full">
+    <div class="flex items-center gap-4">
+      <button class="md:hidden text-on-surface p-2"><span class="material-symbols-outlined">menu</span></button>
+      
+    </div>
+    <div class="flex items-center gap-6">
+      <div class="hidden md:flex flex-col items-end">
+        <span id="userName" class="text-sm font-bold text-on-surface leading-tight">Loading...</span>
+        <span id="userEmail" class="text-xs text-on-surface-variant">Loading...</span>
+      </div>
+      <div class="h-10 w-10 rounded-full bg-primary-fixed flex items-center justify-center overflow-hidden border-2 border-white shadow-sm">
+        <img id="userAvatar" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvsGhEtrORO0IQbxpQTXYF8inpjVTbZjFrSTuwmEZ8Xyuf-UXMWTqYjLXyg1BspENczPBBuyZeJCcRsc2WP3RI6b9Uxf4lxdVXCoPzZHnjEoYBpfI1EWBHZ7tnYXwzH-fVa_i2ktnBImN-RpuuBOKaZfRJ2glF0qngxxu7ocuoQhSuEPtxXq3mqhWjJuvXlDDflcW6PQclhp-T58OZb_NSOMQPYFe8t5AipOR9rQjk1BQom9tAmkz443QT4OoegEx-LjYAeAB3TqQ" alt="Patient Avatar"/>
+      </div>
+      <button id="logoutBtn" class="flex items-center gap-2 px-4 py-2 rounded-full text-blue-700 dark:text-blue-400 font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors active:scale-95 duration-200">
+        <span class="material-symbols-outlined text-[20px]">logout</span>
+        <span class="hidden sm:inline">Logout</span>
+      </button>
+    </div>
+  </div>
+  <div class="bg-slate-100 dark:bg-slate-800 h-[1px]"></div>
+</header>
+
+<!-- SideNavBar -->
+<aside class="hidden md:flex h-screen w-64 fixed left-0 top-0 border-r border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 flex-col pt-20 pb-8 px-4 transition-all duration-300 ease-in-out">
+  <nav class="flex-1 space-y-1">
+    <a class="flex items-center gap-3 px-4 py-3 text-blue-700 dark:text-blue-300 font-bold border-r-4 border-blue-700 bg-blue-50 dark:bg-blue-900/20 transition-all duration-300" href="#">
+      <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+      <span class="font-inter text-sm font-medium">Dashboard</span>
+    </a>
+    <!-- <a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50/50 dark:hover:bg-blue-900/10 transition-all duration-300" href="#">
+      <span class="material-symbols-outlined">calendar_today</span>
+      <span class="font-inter text-sm font-medium">Appointments</span>
+    </a> -->
+    <a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50/50 dark:hover:bg-blue-900/10 transition-all duration-300" href="#">
+      <span class="material-symbols-outlined">medical_services</span>
+      <span class="font-inter text-sm font-medium">Prescriptions</span>
+    </a>
+    <!-- <a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50/50 dark:hover:bg-blue-900/10 transition-all duration-300" href="#">
+      <span class="material-symbols-outlined">person</span>
+      <span class="font-inter text-sm font-medium">Profile</span>
+    </a> -->
+    <a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50/50 dark:hover:bg-blue-900/10 transition-all duration-300" href="#">
+      <span class="material-symbols-outlined">settings</span>
+      <span class="font-inter text-sm font-medium">Settings</span>
+    </a>
+  </nav>
+  <div class="mt-auto p-4 bg-slate-100 dark:bg-slate-900 rounded-xl">
+    <div class="flex items-center gap-3">
+      <div class="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-[10px] text-white font-bold">AJ</div>
+      <div class="flex flex-col overflow-hidden">
+        <span id="userNameSidebar" class="text-xs font-bold truncate">Loading...</span>
+        <span id="userEmailSidebar" class="text-[10px] text-on-surface-variant truncate">Loading...</span>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- Main Content -->
+<main class="md:ml-64 pt-24 pb-12 px-6 lg:px-12">
+  <!-- Hero Section -->
+  <section class="mb-12">
+    <h1 id="greetingText" class="font-headline font-extrabold text-4xl lg:text-5xl text-on-surface tracking-tight mb-2">Welcome back!</h1>
+   >
+  </section>
+
+  <!-- Bento Summary Cards -->
+  <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+    <!-- Card 1 -->
+    <div class="bg-surface-container-lowest rounded-[1.5rem] p-8 shadow-sm hover:shadow-md transition-shadow group relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-110"></div>
+      <div class="relative z-10">
+        <div class="h-12 w-12 bg-blue-50 text-blue-700 rounded-xl flex items-center justify-center mb-6">
+          <span class="material-symbols-outlined">event_available</span>
+        </div>
+        <h3 class="text-on-surface-variant font-label font-semibold text-xs uppercase tracking-widest mb-1">Upcoming Appointments</h3>
+        <div class="flex items-baseline gap-2">
+          <span id="upcomingCount" class="text-4xl font-headline font-bold text-on-surface">0</span>
+          <span class="text-secondary font-medium text-sm flex items-center gap-1">
+            <span class="h-2 w-2 rounded-full bg-secondary animate-pulse"></span> Next: --
+          </span>
+        </div>
+      </div>
+    </div>
+    <!-- Card 2 -->
+    <div class="bg-surface-container-lowest rounded-[1.5rem] p-8 shadow-sm hover:shadow-md transition-shadow group relative overflow-hidden border-2 border-transparent hover:border-outline-variant/10">
+      <div class="absolute top-0 right-0 w-32 h-32 bg-tertiary/5 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-110"></div>
+      <div class="relative z-10">
+        <div class="h-12 w-12 bg-purple-50 text-tertiary rounded-xl flex items-center justify-center mb-6">
+          <span class="material-symbols-outlined">description</span>
+        </div>
+        <h3 class="text-on-surface-variant font-label font-semibold text-xs uppercase tracking-widest mb-1">Recent Reports</h3>
+        <div class="flex items-baseline gap-2">
+          <span id="reportCount" class="text-4xl font-headline font-bold text-on-surface">0</span>
+          <span class="text-on-surface-variant text-sm">Pending review</span>
+        </div>
+      </div>
+    </div>
+    <!-- Card 3 -->
+    <div class="bg-gradient-to-br from-primary to-secondary rounded-[1.5rem] p-8 shadow-lg shadow-primary/20 group relative overflow-hidden">
+      <div class="absolute inset-0 bg-white/5 backdrop-blur-3xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+      <div class="relative z-10 text-white">
+        <div class="h-12 w-12 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center mb-6">
+          <span class="material-symbols-outlined">favorite</span>
+        </div>
+        <h3 class="text-white/80 font-label font-semibold text-xs uppercase tracking-widest mb-1">Health Score</h3>
+        <div class="flex items-baseline gap-2">
+          <span class="text-4xl font-headline font-bold">--%</span>
+          <span class="text-white/90 text-sm font-medium">--</span>
+        </div>
+        <div class="mt-4 flex items-end gap-1 h-8">
+          <div class="w-full bg-white/20 h-3 rounded-full"></div>
+          <div class="w-full bg-white/30 h-5 rounded-full"></div>
+          <div class="w-full bg-white/40 h-4 rounded-full"></div>
+          <div class="w-full bg-white/60 h-7 rounded-full"></div>
+          <div class="w-full bg-white h-8 rounded-full"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Appointments Table -->
+  <section class="bg-surface-container-lowest rounded-[1.5rem] shadow-sm overflow-hidden border border-outline-variant/10">
+    <div class="p-8 flex justify-between items-center border-b border-surface-container-low">
+      <h2 class="font-headline font-bold text-xl text-on-surface">Recent Appointments</h2>
+      <button class="text-primary font-bold text-sm flex items-center gap-1 hover:underline">
+        View All <span class="material-symbols-outlined text-sm">arrow_forward</span>
+      </button>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="bg-surface-container-low/50">
+            <th class="px-8 py-5 font-label text-xs font-bold text-on-surface-variant uppercase tracking-wider">ID</th>
+            <th class="px-8 py-5 font-label text-xs font-bold text-on-surface-variant uppercase tracking-wider">Service</th>
+            <th class="px-8 py-5 font-label text-xs font-bold text-on-surface-variant uppercase tracking-wider">Doctor</th>
+            <th class="px-8 py-5 font-label text-xs font-bold text-on-surface-variant uppercase tracking-wider">Date</th>
+            <th class="px-8 py-5 font-label text-xs font-bold text-on-surface-variant uppercase tracking-wider">Time</th>
+            <th class="px-8 py-5 font-label text-xs font-bold text-on-surface-variant uppercase tracking-wider text-right">Status</th>
+          </tr>
+        </thead>
+        <tbody id="appointmentsTable" class="divide-y divide-surface-container-low">
+          <tr><td colspan="6" class="text-center py-6">Loading appointments...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<!-- Bottom Navigation -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-lg border-t border-slate-100 px-6 py-3 flex justify-between items-center z-50">
+<a class="flex flex-col items-center gap-1 text-blue-700" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="text-[10px] font-bold">Dash</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="text-[10px] font-medium">Appts</span>
+</a>
+<div class="relative -top-8">
+<button class="h-14 w-14 rounded-full bg-gradient-to-tr from-primary to-secondary text-white shadow-lg shadow-primary/40 flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+</div>
+<a class="flex flex-col items-center gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined">medical_services</span>
+<span class="text-[10px] font-medium">Meds</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</nav>
+<script>
+  const token = localStorage.getItem("token");
+  const WHATSAPP_NUMBER = "233541066137";
+
+  const API_BASE = `${window.location.origin}/api`;
+
+  console.log("TOKEN:", token);
+
+  // 🔒 Auth check
+  if (!token) {
+    window.location.href = "/login";
+  } else {
+    try {
+      const payload = JSON.parse(atob(token.split(".")[1]));
+
+      if (payload.exp * 1000 < Date.now()) {
+        throw new Error("Token expired");
+      }
+
+    } catch (err) {
+      console.warn("Invalid token → redirecting");
+      localStorage.removeItem("token");
+      window.location.href = "/login";
+    }
+  }
+
+  // Logout
+  document.getElementById("logoutBtn").addEventListener("click", () => {
+    localStorage.removeItem("token");
+    window.location.href = "/login";
+  });
+
+  async function loadDashboard() {
+    try {
+      console.log("🚀 Loading dashboard...");
+
+      const res = await fetch(`${API_BASE}/appointments`, {
+        headers: { "Authorization": `Bearer ${token}` }
+      });
+
+      console.log("Response status:", res.status);
+
+      // 🔥 ✅ HANDLE 401 (NEW)
+      if (res.status === 401) {
+        console.warn("Session expired (401)");
+        localStorage.removeItem("token");
+        window.location.href = "/login";
+        return;
+      }
+
+      // ❗ Keep normal error handling for other cases
+      if (!res.ok) {
+        const text = await res.text();
+        console.error("❌ Server error response:", text);
+        throw new Error("Fetch failed");
+      }
+
+      const data = await res.json();
+      console.log("API DATA:", data);
+
+      const user = data.user || {
+        full_name: "Patient",
+        email: "No email",
+      };
+
+      const appointments = data.appointments || [];
+
+      // UI updates
+      document.getElementById("userName").textContent = user.full_name;
+      document.getElementById("userEmail").textContent = user.email;
+      document.getElementById("userAvatar").src =
+        user.avatar ? user.avatar : "/assets/img/avatar.png";
+      document.getElementById("userNameSidebar").textContent = user.full_name;
+      document.getElementById("userEmailSidebar").textContent = user.email;
+      document.getElementById("greetingText").textContent =
+        `Welcome back, ${user.full_name}!`;
+
+      const tableBody = document.getElementById("appointmentsTable");
+
+      if (!appointments.length) {
+        tableBody.innerHTML =
+          `<tr><td colspan="6" class="text-center py-6">No appointments found</td></tr>`;
+        
+        document.getElementById("upcomingCount").textContent = "0";
+        document.querySelector('#upcomingCount + span').textContent = "Next: --";
+        document.getElementById("reportCount").textContent = "0";
+        return;
+      }
+
+      tableBody.innerHTML = appointments.map(a => {
+        const d = a.date ? new Date(a.date) : null;
+
+        const date = d
+          ? d.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })
+          : "--";
+
+        const time = d
+          ? d.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })
+          : "--";
+
+        let statusClass = "bg-slate-100 text-slate-700";
+
+        if (a.status === "Confirmed") {
+          statusClass = "bg-green-50 text-green-700";
+        } else if (a.status === "Pending") {
+          statusClass = "bg-orange-50 text-orange-600";
+        } else if (a.status === "Cancelled") {
+          statusClass = "bg-red-50 text-red-700";
+        }
+
+        return `
+          <tr class="hover:bg-slate-50/80 transition">
+            <td class="px-8 py-5 text-sm font-medium">${a.id}</td>
+
+            <td class="px-8 py-5 text-sm font-semibold">
+              ${a.service_name || "--"}
+            </td>
+
+            <td class="px-8 py-5">
+              <div class="flex items-center gap-3">
+                <img src="/assets/img/avatar.png"
+                  class="h-8 w-8 rounded-full object-cover" />
+                <span class="text-sm">${a.doctor_name || "Doctor"}</span>
+              </div>
+            </td>
+
+            <td class="px-8 py-5 text-sm">${date}</td>
+            <td class="px-8 py-5 text-sm font-medium">${time}</td>
+
+            <td class="px-8 py-5 text-right flex items-center justify-end gap-3">
+              <span class="inline-flex px-3 py-1 rounded-full text-xs font-bold ${statusClass}">
+                ${a.status}
+              </span>
+
+              ${
+                a.status && a.status.toLowerCase() === "paid"
+                  ? `
+                  <a href="https://wa.me/${WHATSAPP_NUMBER}?text=Hello Doctor, I have paid for my appointment."
+                    target="_blank"
+                    class="text-green-600 hover:scale-110 transition">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                  </a>`
+                  : ""
+              }
+            </td>
+          </tr>
+        `;
+      }).join("");
+
+      const upcoming = appointments.filter(a => a.status === "Confirmed");
+
+      document.getElementById("upcomingCount").textContent = upcoming.length;
+
+      if (upcoming.length > 0) {
+        const next = new Date(upcoming[0].date);
+        document.querySelector('#upcomingCount + span').textContent =
+          `Next: ${next.toISOString().split('T')[0]} ${next.toTimeString().slice(0,5)}`;
+      } else {
+        document.querySelector('#upcomingCount + span').textContent = "Next: --";
+      }
+
+      document.getElementById("reportCount").textContent =
+        appointments.filter(a => a.status === "Pending").length;
+
+      console.log("✅ Dashboard loaded successfully");
+
+    } catch (err) {
+      console.error("🔥 FULL ERROR:", err);
+
+      // 🔥 ✅ SILENT LOGOUT (UPDATED)
+      console.warn("Session expired or request failed");
+
+      localStorage.removeItem("token");
+      window.location.href = "/login";
+    }
+  }
+
+  loadDashboard();
+</script>
+</body>
+</html>
+
+
+          

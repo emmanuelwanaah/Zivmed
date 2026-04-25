@@ -1,0 +1,557 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #fff;
+}
+
+/* Logo */
+.logo img {
+    width: 80px;
+}
+
+/* Navbar links */
+nav {
+    align-items: center;
+}
+
+.nav-link {
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 25px;
+    color: #343A48;
+}
+
+/* Buttons */
+.btn {
+    background-color: #0099CC;
+    padding: 8px 30px;
+    border-radius: 0;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.btn:hover {
+    background-color: #0077AA; /* darker blue on hover */
+}
+
+/* Remove Bootstrap dropdown arrow */
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+/* Dropdown icon */
+.dropdown-icon {
+    width: 25px;
+    height: 25px;
+    margin-left: -5px;
+    transition: transform 0.3s ease;
+}
+
+/* Base nav link */
+.navbar-nav .nav-link {
+    position: relative;
+    padding: 28px 20px;
+    display: inline-block;
+}
+
+/* Underline pseudo-element (desktop only) */
+@media (min-width: 992px) {
+    .navbar-nav .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -7.5px;
+        width: 0;
+        height: 4px;
+        background: #343A48;
+        transition: width 0.3s ease;
+    }
+
+    /* Show underline on hover, active, or open dropdown */
+    .navbar-nav .nav-link:hover::after,
+    .navbar-nav .nav-link.active::after,
+    .navbar-nav .dropdown.show > .dropdown-toggle::after {
+        width: 100%;
+    }
+
+    /* Mega menu - desktop */
+    .dropdown-menu.mega-menu {
+        position: absolute !important;
+        top: 100%;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 600px;
+        border-radius: 0 !important;
+        padding: 2rem !important;
+        z-index: 1050;
+    }
+}
+
+/* Mega menu content */
+.dropdown-menu h6 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0d1b2a; /* dark blue-black */
+    margin-bottom: 10px;
+}
+
+.dropdown-menu .dropdown-item {
+    font-size: 14px;
+    font-weight: 400;
+    color: #343A48;
+    align-self: start;
+}
+
+/* Mega menu - mobile & tablet */
+@media (max-width: 991px) {
+    .dropdown-menu.mega-menu {
+        position: static !important; /* normal menu flow */
+        width: 100% !important;
+        transform: none !important;
+        padding: 1rem !important;
+        box-shadow: none !important;
+    }
+
+    .dropdown-menu h6,
+    .dropdown-menu .dropdown-item {
+        text-align: left;
+    }
+
+    /* Hide underline on mobile/tablet */
+    .navbar-nav .nav-link::after {
+        display: none;
+    }
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 100vh;
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+        url('/assets/img/back4.jpg') right top / cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    background-repeat: no-repeat;
+}
+
+.hero h1 {
+    font-size: 42px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 15px;
+    margin-bottom: 30px;
+}
+
+/* Hero - mobile */
+@media (max-width: 768px) {
+    .hero {
+        text-align: center;
+        padding: 2rem;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+}
+
+/* Main layout */
+.main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+.text {
+    flex: 1;
+}
+
+.hero-content {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+.hero-search {
+    display: flex;
+    width: 100%; /* full width */
+    max-width: 900px; /* optional max width */
+    margin: 0 auto;
+    /* overflow: hidden; */
+    background-color: #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    flex: 1; /* stretch equally */
+}
+
+/* Input fills the box, no shrinking on focus */
+.search-box input {
+    flex: 1;
+    height: 55px; /* fixed height */
+    font-size: 14px;
+    padding: 0 15px;
+    border: 1px solid #ddd;
+    border-radius: 0;
+    background: #f8f8f8;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.3s, background 0.3s;
+}
+
+
+
+/* Blue border on focus */
+.search-box input:focus {
+    border: 2px solid #0056b3; /* deep blue */
+    
+}
+
+
+
+/* Search button same height as input */
+.btn-search {
+    height: 55px;
+    background-color: #0056b3;
+    color: #fff;
+    border: none;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 0 25px;
+    border-radius: 0;
+    transition: background 0.3s;
+}
+
+.btn-search:hover {
+    background-color: #003d80; /* darker blue on hover */
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .hero-search {
+        flex-direction: column;
+    }
+
+    .search-box input, .btn-search {
+        width: 100%;
+        border-right: none; /* remove divider on mobile */
+    }
+
+    .btn-search {
+        margin-top: 10px;
+    }
+}
+
+
+
+/* Initially hidden */
+#popular-searches {
+    display: none;
+    border-radius: 0; /* remove rounded corners */
+}
+
+/* Show dropdown when input is focused */
+#popular-searches.show {
+    display: block;
+}
+
+/* Optional: style items */
+.dropdown-item {
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+.dropdown-item:hover {
+    background-color: #f1f1f1;
+}
+
+
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-overlay {
+    z-index: 1;
+}
+
+.hero-overlay {
+    pointer-events: none;
+}
+
+
+
+
+.hero-search {
+    position: relative;
+    overflow: visible;
+}
+
+.search-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%; /* FULL hero-search width */
+    border-radius: 0 !important;
+}
+
+.fw-bold{
+    font-weight: bold;
+    font-size: 28px;
+}
+
+.why-banner{
+    position:relative;
+    height:420px;
+    overflow:hidden;
+    border-radius:10px;
+    }
+    
+    .why-banner img{
+    height:100%;
+    object-fit:cover;
+    }
+    
+    .why-banner::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.45);
+    }
+    
+    .why-banner-content{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    color:white;
+    text-align:center;
+    z-index:2;
+    max-width:600px;
+    }
+    
+    .why-banner-content h3{
+    font-weight:700;
+    margin-bottom:10px;
+    }
+
+
+    .why-banner{
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .why-banner img{
+        height: 400px;
+        object-fit: cover;
+      }
+      
+      .why-banner-content{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: white;
+        z-index: 2;
+        max-width: 600px;
+      }
+      
+      /* dark overlay */
+      .why-banner::before{
+        content:"";
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        background:rgba(0,0,0,0.45);
+      }
+      
+      /* button hidden initially */
+      .book-btn{
+        margin-top:15px;
+        opacity:0;
+        transform:translateY(20px);
+        transition:all 0.4s ease;
+      }
+      
+      /* show button on hover */
+      .why-banner:hover .book-btn{
+        opacity:1;
+        transform:translateY(0);
+      }
+
+.doctor-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.doctor-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Removed transform on hover */
+}
+
+/* Overlay starts below the card */
+.doctor-overlay {
+  position: absolute;
+  bottom: -100%; /* hidden below initially */
+  left: 0;
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(to top, rgba(0, 70, 145, 0.9), rgba(0, 123, 255, 0));
+  color: white;
+  text-align: center;
+  transition: bottom 0.4s ease;
+}
+
+/* Slide overlay up on hover or focus */
+.doctor-card:hover .doctor-overlay,
+.doctor-card:focus-within .doctor-overlay {
+  bottom: 0;
+}
+
+.doctor-overlay h5 {
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+
+.doctor-overlay p {
+  margin-bottom: 0;
+  font-size: 0.9rem;
+}
+
+
+
+.testimonial-card{
+    border-radius:10px;
+    transition:0.3s;
+    }
+    
+    .testimonial-card:hover{
+    transform:translateY(-5px);
+    }
+
+
+    /* Contact Section */
+
+
+.mb-4{
+font-weight: bold;
+color: #003d80;
+}
+
+.contact-info p{
+    font-size: 14px;
+    color: #011933;
+    font-weight: 600;
+}
+
+.fw-bold{
+    color: #043b75;
+}
+
+.text-muted{
+    font-weight: bold;
+}
+
+.form-label{
+    font-weight: bold;
+    color: #011933;
+}
+
+.contact-banner{
+    height:60vh;
+    background:url("/assets/img/ban.jpg") center/cover no-repeat;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:#fff;
+    position:relative;
+  }
+  
+  .contact-banner::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.5);
+  }
+  
+  .contact-banner h2{
+    position:relative;
+    z-index:2;
+    color: #fff;
+   font-size: 38px;
+  }
+  .contact-banner p{
+    color: #fff;
+  }
+
+
+  .contact-container{
+    margin-top:80px;
+  }
+
+
+  .footer-section {
+    padding-top: 120px; /* more space above the footer content */
+    padding-bottom: 50px;
+    margin-top: 5rem; /* optional: space at the bottom */
+}
+
+/* Footer background with extra top space */
+.bg-blueblack {
+    background-color: #0a1d36; /* Dark blue-black */
+    padding-top: 100px; /* extra space above content */
+    padding-bottom: 50px; /* optional: space at bottom */
+}
+  
+  /* Reduce spacing and text size */
+  .footer-heading{
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  
+  .footer-desc{
+    font-size: 0.8rem;
+  }
+  
+  .footer-links a,
+  .footer-services a{
+    font-size: 0.8rem;
+  }
+  
+  .footer-logo img{
+    max-width: 120px; /* smaller logo */
+  }
+  
+  /* Social icons hover effect */
+  .footer-socials a:hover{
+    color: #0d6efd; /* Bootstrap primary blue on hover */
+    transition: 0.3s;
+  }

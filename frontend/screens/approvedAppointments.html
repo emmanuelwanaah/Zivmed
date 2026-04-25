@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Clinical Sanctuary | Approved &amp; Paid Appointments</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#33008e",
+                        "surface-container-low": "#f2f3f6",
+                        "on-secondary-fixed-variant": "#5400cc",
+                        "surface-container-high": "#e7e8eb",
+                        "on-surface-variant": "#434652",
+                        "on-surface": "#191c1e",
+                        "on-tertiary-fixed-variant": "#4f00d0",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#08409e",
+                        "inverse-surface": "#2e3133",
+                        "primary-fixed": "#dae2ff",
+                        "surface-bright": "#f8f9fc",
+                        "on-primary-fixed": "#001848",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#cdbdff",
+                        "surface-tint": "#2f59b7",
+                        "on-tertiary-container": "#b8a3ff",
+                        "on-secondary-container": "#eee4ff",
+                        "surface-dim": "#d9dadd",
+                        "on-primary-container": "#91afff",
+                        "secondary-fixed-dim": "#cfbcff",
+                        "secondary-container": "#7836ff",
+                        "inverse-primary": "#b2c5ff",
+                        "secondary-fixed": "#e9ddff",
+                        "primary": "#00296d",
+                        "secondary": "#5f00e3",
+                        "inverse-on-surface": "#f0f1f4",
+                        "tertiary-fixed": "#e8deff",
+                        "surface-container-highest": "#e1e2e5",
+                        "tertiary-container": "#4c00c8",
+                        "outline": "#747783",
+                        "on-tertiary-fixed": "#20005f",
+                        "surface-variant": "#e1e2e5",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#c4c6d4",
+                        "surface": "#f8f9fc",
+                        "primary-container": "#003d9b",
+                        "on-error": "#ffffff",
+                        "background": "#f8f9fc",
+                        "on-background": "#191c1e",
+                        "surface-container": "#edeef1",
+                        "on-secondary-fixed": "#22005d",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-primary-gradient {
+            background: linear-gradient(135deg, #00296d 0%, #003d9b 100%);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-fixed selection:text-primary">
+<div class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 hidden lg:flex flex-col sticky top-0 bg-slate-50 dark:bg-slate-900 shadow-none border-r border-slate-100/10">
+<div class="flex flex-col gap-4 p-6 h-full">
+<!-- Brand Header -->
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 bg-primary-gradient rounded-xl flex items-center justify-center text-white shadow-lg">
+<span class="material-symbols-outlined">health_metrics</span>
+</div>
+<div>
+
+</div>
+</div>
+<!-- Nav Items -->
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 p-3 text-slate-500 dark:text-slate-400 font-medium hover:text-[#00296d] hover:bg-white/40 dark:hover:bg-slate-800/40 transition-all duration-300 ease-out rounded-xl scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-headline font-bold tracking-tight">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-[#00296d] dark:text-blue-300 font-extrabold bg-white/50 dark:bg-slate-800/50 backdrop-blur-md rounded-xl shadow-sm transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-headline font-bold tracking-tight">Appointments</span>
+</a>
+
+<a class="flex items-center gap-3 p-3 text-slate-500 dark:text-slate-400 font-medium hover:text-[#00296d] hover:bg-white/40 dark:hover:bg-slate-800/40 transition-all duration-300 ease-out rounded-xl scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-headline font-bold tracking-tight">Settings</span>
+</a>
+</nav>
+<!-- Profile Anchor (Bottom) -->
+<div class="mt-auto pt-6 border-t border-slate-200/50 flex items-center gap-3">
+<img alt="Doctor Profile Portrait" class="w-10 h-10 rounded-full object-cover" data-alt="professional portrait of a senior male clinician in a white coat with a friendly smile, clean medical background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-XQkjFACcFTdBSta7oxAbg2ELBZSSu7_03Zhx4xNJ14AVAh5gU9ogKCAHUFgMqYacrKIO6qHkarDnt4VoOvSrDMGVgKwTWWl472pD4uWrigTryJ8oU5gqOr5U9-1i0bTaOFJ7SaNMKqi34hxENhYKpJ5jIgdiWUQ0cgrVPRtySZcuVga2_vuNpF3A7_DY7-nykpR4Z5uznmNV9InRvFvvYMpozqlqBnFA5ZuX3JoDxY2NG3IhtEbjH_ZkLn1dZ-eHwevp36v5jSE"/>
+<div class="overflow-hidden">
+
+</div>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col min-w-0">
+<!-- TopNavBar -->
+
+<!-- Page Content -->
+<div class="p-4 md:p-8 max-w-7xl mx-auto w-full flex flex-col gap-8 pb-32 lg:pb-8">
+<!-- Hero Header Asymmetric Lockup -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+<div class="space-y-2">
+<div class="flex items-center gap-3">
+<h2 class="text-3xl md:text-4xl font-extrabold font-headline tracking-tight text-primary">Approved &amp; Paid Appointments</h2>
+<span class="px-4 py-1 bg-primary-fixed text-on-primary-fixed-variant text-xs font-bold rounded-full uppercase tracking-wider">Live</span>
+</div>
+<p class="text-on-surface-variant text-lg">
+    View all confirmed and completed consultations • 
+    <span id="appointmentsCount" class="font-bold text-primary">
+      0 completed appointments
+    </span>
+  </p>
+</div>
+<div class="flex items-center gap-3 glass-panel p-2 rounded-xl shadow-[0_20px_40px_rgba(0,41,109,0.06)]">
+<button class="bg-primary-gradient text-on-primary px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 hover:brightness-105 transition-all shadow-md active:scale-95">
+<span class="material-symbols-outlined text-sm">download</span>
+                            Download CSV
+                        </button>
+</div>
+</div>
+<!-- Summary Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-surface-container-lowest p-8 rounded-xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform duration-500"></div>
+<p class="text-on-surface-variant text-sm font-semibold uppercase tracking-widest mb-4">Total Revenue</p>
+<h3 id="totalRevenue" class="text-4xl font-black font-headline text-primary tracking-tighter">
+    $0.00
+  </h3>
+<div class="mt-4 flex items-center gap-2 text-emerald-600 text-sm font-bold">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>+12.5% this month</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-secondary/5 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform duration-500"></div>
+<p class="text-on-surface-variant text-sm font-semibold uppercase tracking-widest mb-4">Completed Appointments</p>
+<h3 id="totalAppointments" class="text-4xl font-black font-headline text-primary tracking-tighter">
+    0
+  </h3>
+<div class="mt-4 flex items-center gap-2 text-primary/60 text-sm font-bold">
+<span class="material-symbols-outlined text-sm">verified</span>
+<span>Quality Score: 4.9/5</span>
+</div>
+</div>
+<div class="bg-primary-gradient p-8 rounded-xl relative overflow-hidden group text-white">
+<div class="absolute bottom-0 right-0 w-48 h-48 bg-white/10 rounded-full -mb-24 -mr-24 group-hover:scale-110 transition-transform duration-500"></div>
+<p class="text-white/70 text-sm font-semibold uppercase tracking-widest mb-4">Today's Earnings</p>
+<h3 id="todayEarnings" class="text-4xl font-black font-headline tracking-tighter">
+  $0.00
+</h3>
+<div class="mt-4 flex items-center gap-2 text-white/90 text-sm font-bold">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<span>8 pending payouts</span>
+</div>
+</div>
+</div>
+<!-- Filters Strip -->
+<div class="bg-surface-container-low p-4 rounded-xl flex flex-wrap items-center gap-4">
+<div class="flex-1 min-w-[280px] relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-white border-none rounded-xl py-3 pl-12 pr-4 text-sm focus:ring-2 focus:ring-primary/10 transition-all" placeholder="Filter by patient name or email..." type="text"/>
+</div>
+<div class="flex items-center gap-2 bg-white p-1 rounded-xl">
+<button class="px-4 py-2 text-sm font-bold rounded-lg bg-primary text-white shadow-sm">Today</button>
+<button class="px-4 py-2 text-sm font-semibold rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors">This Week</button>
+<button class="px-4 py-2 text-sm font-semibold rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors">This Month</button>
+</div>
+<div class="relative">
+
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-outline">expand_more</span>
+</div>
+</div>
+<!-- Main Data Table -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm">
+<div class="overflow-x-auto no-scrollbar">
+<table class="w-full text-left border-separate border-spacing-0">
+<thead>
+
+</thead>
+<tbody id="appointmentsTable" class="divide-y divide-surface-container-low"></tbody>
+<!-- Row 1 -->
+
+
+
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="bg-surface-container-low/30 p-4 border-t border-surface-container-low flex items-center justify-between">
+<p class="text-xs text-on-surface-variant font-medium">Showing <span class="font-bold text-primary">1-4</span> of 12 appointments</p>
+<div class="flex gap-2">
+<button class="p-2 rounded-lg bg-white border border-surface-container hover:bg-surface-container-low transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="p-2 rounded-lg bg-white border border-surface-container hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+
+</div>
+</div>
+</main>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 w-full lg:hidden rounded-t-[3rem] pb-safe bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl shadow-[0_-10px_30px_rgba(0,41,109,0.08)] border-t border-slate-100/10 z-50">
+<div class="flex justify-around items-center px-6 h-20">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 p-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-widest mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-gradient-to-br from-[#00296d] to-[#003d9b] text-white rounded-full p-3 mb-2 shadow-lg scale-110 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="event">event</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 p-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-widest mt-1">Patients</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 p-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-widest mt-1">Settings</span>
+</a>
+</div>
+</nav>
+
+<script>
+  const token = localStorage.getItem("token");
+  
+  // ✅ Dynamic API base
+  const API_BASE = `${window.location.origin}/api`;
+  
+  // 🔒 Protect page
+  if (!token) {
+    window.location.href = "/doctor/login";
+  }
+  
+  // 💰 Currency formatter (Ghana Cedis)
+  const formatCedis = (amount) => {
+    return new Intl.NumberFormat("en-GH", {
+      style: "currency",
+      currency: "GHS"
+    }).format(amount);
+  };
+  
+  // 🚀 Load approved + paid appointments
+  async function loadApprovedAppointments() {
+    try {
+      const res = await fetch(`${API_BASE}/doctor/appointments/approved`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+  
+      if (!res.ok) {
+        const data = await res.json();
+        return alert(data.error || "Failed to load appointments");
+      }
+  
+      const data = await res.json();
+      const tbody = document.getElementById("appointmentsTable");
+  
+      tbody.innerHTML = "";
+  
+      // ✅ Header count
+      const countEl = document.getElementById("appointmentsCount");
+      if (countEl) {
+        countEl.innerText = `${data.length} completed appointments`;
+      }
+  
+      let totalRevenue = 0;
+      let todayRevenue = 0;
+      const today = new Date().toDateString();
+  
+      if (data.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7" class="text-center py-10 text-slate-400">
+              No approved appointments yet
+            </td>
+          </tr>
+        `;
+        return;
+      }
+  
+      data.forEach(app => {
+        const amount = Number(app.amount || app.consultation_fee || 0);
+        totalRevenue += amount;
+  
+        const appDate = new Date(app.created_at || Date.now()).toDateString();
+        if (appDate === today) {
+          todayRevenue += amount;
+        }
+  
+        const initials = app.patient_name
+          .split(" ")
+          .map(n => n[0])
+          .join("")
+          .toUpperCase();
+  
+        const tr = document.createElement("tr");
+  
+        tr.innerHTML = `
+          <td class="px-6 py-5">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-primary-fixed text-primary flex items-center justify-center font-bold text-sm">
+                ${initials}
+              </div>
+              <div>
+                <p class="font-bold text-sm">${app.patient_name}</p>
+                <p class="text-xs text-slate-500">${app.patient_email}</p>
+              </div>
+            </div>
+          </td>
+  
+          <td class="px-6 py-5">
+            <span class="text-sm font-semibold text-primary">
+              ${app.service_name}
+            </span>
+          </td>
+  
+          <td class="px-6 py-5">
+            ${app.slot_id}
+          </td>
+  
+          <td class="px-6 py-5 text-center">
+            <span class="px-3 py-1 bg-emerald-100 text-emerald-700 text-xs font-bold rounded-full">
+              Paid
+            </span>
+          </td>
+  
+          <td class="px-6 py-5 text-center">
+            <span class="px-3 py-1 bg-primary-fixed text-primary text-xs font-bold rounded-full">
+              Approved
+            </span>
+          </td>
+  
+          <td class="px-6 py-5 text-right font-bold text-primary">
+            ${formatCedis(amount)}
+          </td>
+  
+          <td class="px-6 py-5 text-right">
+            <button onclick="viewDetails(${app.id})"
+              class="bg-surface-container-highest px-4 py-2 rounded-lg text-xs font-bold hover:bg-primary hover:text-white">
+              View
+            </button>
+          </td>
+        `;
+  
+        tbody.appendChild(tr);
+      });
+  
+      // ✅ Update summary cards
+      document.getElementById("totalRevenue").innerText = formatCedis(totalRevenue);
+      document.getElementById("totalAppointments").innerText = data.length;
+      document.getElementById("todayEarnings").innerText = formatCedis(todayRevenue);
+  
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong");
+    }
+  }
+  
+  // 👁 View details
+  function viewDetails(id) {
+    alert("Open appointment ID: " + id);
+  }
+  
+  // 🚀 Load page
+  loadApprovedAppointments();
+  </script>
+</body>
+
+</html>
