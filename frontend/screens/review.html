@@ -142,128 +142,87 @@ tailwind.config = {
 </main>
 
 <script>
-  document.addEventListener("DOMContentLoaded", async () => {
-  
-    const API_BASE = `${window.location.origin}/api`;
-  
-    const bookingData = JSON.parse(localStorage.getItem("bookingData"));
-    if (!bookingData) {
-      alert("No booking found!");
-      window.location.href = "/booking";
-      return;
-    }
-  
-    const fixedDoctorName = "Dr. John Smith";
-    document.getElementById("reviewDoctor").textContent = fixedDoctorName;
-  
+document.addEventListener("DOMContentLoaded", async () => {
+  const bookingData = JSON.parse(localStorage.getItem("bookingData"));
+  if (!bookingData) {
+    alert("No booking found!");
+    window.location.href = "/booking";
+    return;
+  }
+
+  const fixedDoctorName = "Dr. John Smith";
+  document.getElementById("reviewDoctor").textContent = fixedDoctorName;
+
+  try {
+    const services = await (await fetch("/api/services")).json();
+    const selectedService = services.find(s => s.id == bookingData.service_id);
+    const timeSlots = {1:"09:00 - 09:30",2:"09:30 - 10:00",3:"10:00 - 10:30",4:"10:30 - 11:00",5:"11:00 - 11:30",6:"11:30 - 12:00"};
+
+    document.getElementById("reviewService").textContent = selectedService?.service_name || "Not found";
+    document.getElementById("reviewDate").textContent = bookingData.date || "Not selected";
+    document.getElementById("reviewTime").textContent = timeSlots[bookingData.time_slot_id] || "Not selected";
+    document.getElementById("reviewName").textContent = bookingData.fullName || "Not provided";
+    document.getElementById("reviewEmail").textContent = bookingData.email || "Not provided";
+    document.getElementById("reviewPhone").textContent = bookingData.phone || "Not provided";
+
+  } catch(err) {
+    console.error(err);
+    alert("Failed to load booking details.");
+  }
+
+  document.getElementById("confirmBooking").addEventListener("click", async () => {
+    const payload = {
+      patient_id: bookingData.userId || null,
+      patient_name: bookingData.fullName,
+      patient_email: bookingData.email,
+      service_id: bookingData.service_id,
+      doctor_id: 14,
+      time_slot_id: bookingData.time_slot_id
+    };
+
     try {
-      const res = await fetch(`${API_BASE}/services`);
-      const services = await res.json();
-  
-      const selectedService = services.find(s => s.id == bookingData.service_id);
-  
-      const timeSlots = {
-        1:"09:00 - 09:30",
-        2:"09:30 - 10:00",
-        3:"10:00 - 10:30",
-        4:"10:30 - 11:00",
-        5:"11:00 - 11:30",
-        6:"11:30 - 12:00"
-      };
-  
-      document.getElementById("reviewService").textContent =
-        selectedService?.service_name || "Not found";
-  
-      document.getElementById("reviewDate").textContent =
-        bookingData.date || "Not selected";
-  
-      document.getElementById("reviewTime").textContent =
-        timeSlots[bookingData.time_slot_id] || "Not selected";
-  
-      document.getElementById("reviewName").textContent =
-        bookingData.fullName || "Not provided";
-  
-      document.getElementById("reviewEmail").textContent =
-        bookingData.email || "Not provided";
-  
-      document.getElementById("reviewPhone").textContent =
-        bookingData.phone || "Not provided";
-  
+      const res = await fetch("/api/appointments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      if (data.error) return alert(data.error);
+
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      doc.setFontSize(16);
+      doc.text("Hospital Appointment Receipt", 20, 20);
+      doc.setFontSize(12);
+      doc.text(`Booking ID: ${data.appointment_id}`, 20, 40);
+      doc.text(`Service: ${document.getElementById("reviewService").textContent}`, 20, 50);
+      doc.text(`Doctor: ${fixedDoctorName}`, 20, 60);
+      doc.text(`Date: ${document.getElementById("reviewDate").textContent}`, 20, 70);
+      doc.text(`Time: ${document.getElementById("reviewTime").textContent}`, 20, 80);
+      doc.text(`Name: ${document.getElementById("reviewName").textContent}`, 20, 100);
+      doc.text(`Email: ${document.getElementById("reviewEmail").textContent}`, 20, 110);
+      doc.text(`Phone: ${document.getElementById("reviewPhone").textContent}`, 20, 120);
+      doc.save("appointment-receipt.pdf");
+
+     localStorage.removeItem("bookingData");
+
+const token = localStorage.getItem("token");
+
+if (!token) {
+  alert("Booking confirmed! Please login to continue.");
+  window.location.href = "/login";
+} else {
+  alert("Booking confirmed!");
+  window.location.href = "/dashboard";
+}
+
     } catch(err) {
       console.error(err);
-      alert("Failed to load booking details.");
+      alert("Something went wrong.");
     }
-  
-    document.getElementById("confirmBooking").addEventListener("click", async () => {
-  
-      const token = localStorage.getItem("token");
-  
-      const payload = {
-        patient_name: bookingData.fullName,
-        patient_email: bookingData.email,
-        service_id: bookingData.service_id,
-        doctor_id: 14,
-        time_slot_id: bookingData.time_slot_id
-      };
-  
-      try {
-        const res = await fetch(`${API_BASE}/appointments`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            ...(token && { Authorization: `Bearer ${token}` })
-          },
-          body: JSON.stringify(payload)
-        });
-  
-        if (!res.ok) {
-          const text = await res.text();
-          throw new Error(text);
-        }
-  
-        const data = await res.json();
-  
-        // 📄 Generate PDF
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-  
-        doc.setFontSize(16);
-        doc.text("Hospital Appointment Receipt", 20, 20);
-  
-        doc.setFontSize(12);
-        doc.text(`Booking ID: ${data.appointment_id}`, 20, 40);
-        doc.text(`Service: ${document.getElementById("reviewService").textContent}`, 20, 50);
-        doc.text(`Doctor: ${fixedDoctorName}`, 20, 60);
-        doc.text(`Date: ${document.getElementById("reviewDate").textContent}`, 20, 70);
-        doc.text(`Time: ${document.getElementById("reviewTime").textContent}`, 20, 80);
-        doc.text(`Name: ${document.getElementById("reviewName").textContent}`, 20, 100);
-        doc.text(`Email: ${document.getElementById("reviewEmail").textContent}`, 20, 110);
-        doc.text(`Phone: ${document.getElementById("reviewPhone").textContent}`, 20, 120);
-  
-        doc.save("appointment-receipt.pdf");
-  
-        // 🧹 Clear booking data
-        localStorage.removeItem("bookingData");
-  
-        // 🔥 SMART REDIRECT FLOW
-        if (!token) {
-          // Save redirect target
-          localStorage.setItem("redirectAfterLogin", "/dashboard");
-  
-          alert("Booking confirmed! Please login to continue.");
-          window.location.href = "/login";
-        } else {
-          alert("Booking confirmed!");
-          window.location.href = "/dashboard";
-        }
-  
-      } catch(err) {
-        console.error(err);
-        alert("Something went wrong.");
-      }
-    });
-  
   });
-  </script>
+});
+</script>
+
 </body>
 </html>
