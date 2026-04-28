@@ -125,13 +125,13 @@ tailwind.config = {
   <div class="w-full max-w-md flex flex-col items-center gap-4">
     <button id="confirmBooking" class="w-full h-14 bg-ethereal-gradient text-white font-headline font-bold rounded-full shadow-lg shadow-primary/10 hover:scale-[1.02] active:scale-95 transition-all duration-200 flex items-center justify-center gap-2">
       <span class="material-symbols-outlined">picture_as_pdf</span>
-      Confirm Booking & Download PDF
+      Confirm Booking 
     </button>
 
-    <a href="/dashboard" class="w-full h-14 bg-surface-container-highest text-on-surface font-headline font-bold rounded-full shadow-sm flex items-center justify-center gap-2 hover:bg-surface-variant transition-colors">
+    <!-- <a href="/login" class="w-full h-14 bg-surface-container-highest text-on-surface font-headline font-bold rounded-full shadow-sm flex items-center justify-center gap-2 hover:bg-surface-variant transition-colors">
       <span class="material-symbols-outlined text-sm">arrow_forward</span>
       Go to Dashboard
-    </a>
+    </a> -->
 
     <div class="flex items-center gap-2 text-emerald-600 py-2">
       <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -142,57 +142,55 @@ tailwind.config = {
 </main>
 
 <script>
-document.addEventListener("DOMContentLoaded", async () => {
-  const bookingData = JSON.parse(localStorage.getItem("bookingData"));
-  if (!bookingData) {
-    alert("No booking found!");
-    window.location.href = "/booking";
-    return;
-  }
-
-  const fixedDoctorName = "Dr. John Smith";
-  document.getElementById("reviewDoctor").textContent = fixedDoctorName;
-
-  try {
-    const services = await (await fetch("/api/services")).json();
-    const selectedService = services.find(s => s.id == bookingData.service_id);
-    const timeSlots = {1:"09:00 - 09:30",2:"09:30 - 10:00",3:"10:00 - 10:30",4:"10:30 - 11:00",5:"11:00 - 11:30",6:"11:30 - 12:00"};
-
-    document.getElementById("reviewService").textContent = selectedService?.service_name || "Not found";
-    document.getElementById("reviewDate").textContent = bookingData.date || "Not selected";
-    document.getElementById("reviewTime").textContent = timeSlots[bookingData.time_slot_id] || "Not selected";
-    document.getElementById("reviewName").textContent = bookingData.fullName || "Not provided";
-    document.getElementById("reviewEmail").textContent = bookingData.email || "Not provided";
-    document.getElementById("reviewPhone").textContent = bookingData.phone || "Not provided";
-
-  } catch(err) {
-    console.error(err);
-    alert("Failed to load booking details.");
-  }
-
-  document.getElementById("confirmBooking").addEventListener("click", async () => {
-    const payload = {
-      patient_id: bookingData.userId || null,
-      patient_name: bookingData.fullName,
-      patient_email: bookingData.email,
-      service_id: bookingData.service_id,
-      doctor_id: 14,
-      time_slot_id: bookingData.time_slot_id
-    };
-
+  document.addEventListener("DOMContentLoaded", async () => {
+  
+    const bookingData = JSON.parse(localStorage.getItem("bookingData"));
+    if (!bookingData) {
+      alert("No booking found!");
+      window.location.href = "/booking";
+      return;
+    }
+  
+    const fixedDoctorName = "Dr. John Smith";
+    let lastBookingResponse = null; // ✅ store response for PDF later
+  
+    document.getElementById("reviewDoctor").textContent = fixedDoctorName;
+  
     try {
-      const res = await fetch("/api/appointments", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
-      const data = await res.json();
-      if (data.error) return alert(data.error);
-
+      const services = await (await fetch("/api/services")).json();
+      const selectedService = services.find(s => s.id == bookingData.service_id);
+  
+      const timeSlots = {
+        1:"09:00 - 09:30",
+        2:"09:30 - 10:00",
+        3:"10:00 - 10:30",
+        4:"10:30 - 11:00",
+        5:"11:00 - 11:30",
+        6:"11:30 - 12:00"
+      };
+  
+      document.getElementById("reviewService").textContent = selectedService?.service_name || "Not found";
+      document.getElementById("reviewDate").textContent = bookingData.date || "Not selected";
+      document.getElementById("reviewTime").textContent = timeSlots[bookingData.time_slot_id] || "Not selected";
+      document.getElementById("reviewName").textContent = bookingData.fullName || "Not provided";
+      document.getElementById("reviewEmail").textContent = bookingData.email || "Not provided";
+      document.getElementById("reviewPhone").textContent = bookingData.phone || "Not provided";
+  
+    } catch(err) {
+      console.error(err);
+      alert("Failed to load booking details.");
+    }
+  
+    // =========================
+    // 🔥 PDF GENERATOR (manual only)
+    // =========================
+    function generatePDF(data) {
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
+  
       doc.setFontSize(16);
       doc.text("Hospital Appointment Receipt", 20, 20);
+  
       doc.setFontSize(12);
       doc.text(`Booking ID: ${data.appointment_id}`, 20, 40);
       doc.text(`Service: ${document.getElementById("reviewService").textContent}`, 20, 50);
@@ -202,27 +200,51 @@ document.addEventListener("DOMContentLoaded", async () => {
       doc.text(`Name: ${document.getElementById("reviewName").textContent}`, 20, 100);
       doc.text(`Email: ${document.getElementById("reviewEmail").textContent}`, 20, 110);
       doc.text(`Phone: ${document.getElementById("reviewPhone").textContent}`, 20, 120);
+  
       doc.save("appointment-receipt.pdf");
-
-     localStorage.removeItem("bookingData");
-
-const token = localStorage.getItem("token");
-
-if (!token) {
-  alert("Booking confirmed! Please login to continue.");
-  window.location.href = "/login";
-} else {
-  alert("Booking confirmed!");
-  window.location.href = "/dashboard";
-}
-
-    } catch(err) {
-      console.error(err);
-      alert("Something went wrong.");
     }
+  
+    // =========================
+    // 🔥 CONFIRM BOOKING (NO AUTO DOWNLOAD)
+    // =========================
+    document.getElementById("confirmBooking").addEventListener("click", async () => {
+  
+      const payload = {
+        patient_id: bookingData.userId || null,
+        patient_name: bookingData.fullName,
+        patient_email: bookingData.email,
+        service_id: bookingData.service_id,
+        doctor_id: 14,
+        time_slot_id: bookingData.time_slot_id
+      };
+  
+      try {
+        const res = await fetch("/api/appointments", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+  
+        const data = await res.json();
+        if (data.error) return alert(data.error);
+  
+        lastBookingResponse = data; // ✅ store for PDF later
+  
+        localStorage.removeItem("bookingData");
+  
+        const token = localStorage.getItem("token");
+  
+        alert("Booking confirmed! Please login to continue.");
+        window.location.href = "/login";
+  
+      } catch(err) {
+        console.error(err);
+        alert("Something went wrong.");
+      }
+    });
+  
   });
-});
-</script>
+  </script>
 
 </body>
 </html>
