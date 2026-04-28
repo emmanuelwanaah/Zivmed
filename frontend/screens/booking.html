@@ -518,11 +518,24 @@
     let savedBooking = JSON.parse(localStorage.getItem("bookingData")) || {};
   
     // =========================
-    // ✅ PREVENT PAST DATES (SAFE)
+    // ✅ PREVENT PAST DATES (ALL DEVICES)
     // =========================
     const today = new Date().toISOString().split("T")[0];
+  
     if (dateInput) {
       dateInput.setAttribute("min", today);
+  
+      // 🔥 FIX FOR IPHONE (REAL-TIME BLOCK)
+      dateInput.addEventListener("input", () => {
+        const todayDate = new Date();
+        todayDate.setHours(0,0,0,0);
+  
+        const selected = new Date(dateInput.value);
+  
+        if (selected < todayDate) {
+          dateInput.value = ""; // clear invalid date
+        }
+      });
     }
   
     // =========================
@@ -531,7 +544,6 @@
     async function loadServices() {
       try {
         const res = await fetch(`${API_BASE}/services`);
-  
         if (!res.ok) throw new Error("Failed to fetch services");
   
         const data = await res.json();
@@ -615,6 +627,16 @@
           return;
         }
   
+        // 🔥 FINAL SAFETY CHECK (IMPORTANT)
+        const selectedDate = new Date(dateInput.value);
+        const todayDate = new Date();
+        todayDate.setHours(0,0,0,0);
+  
+        if (selectedDate < todayDate) {
+          alert("You cannot select a past date.");
+          return;
+        }
+  
         savedBooking = {
           ...savedBooking,
           service_id: serviceSelect.value,
@@ -643,7 +665,6 @@
       indicator2.classList.remove("active");
       indicator1.classList.add("active");
   
-      // clear only step 2 data
       delete savedBooking.fullName;
       delete savedBooking.email;
       delete savedBooking.phone;
@@ -664,21 +685,18 @@
         const email = emailInput.value.trim();
         const name = fullNameInput.value.trim();
   
-        // EMAIL VALIDATION
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
           alert("Please enter a valid email address.");
           return;
         }
   
-        // GHANA PHONE VALIDATION
         const ghPhoneRegex = /^(?:\+233|233|0)(2[0-9]|5[0-9])[0-9]{7}$/;
         if (!ghPhoneRegex.test(phone)) {
           alert("Please enter a valid Ghana phone number.");
           return;
         }
   
-        // NAME
         if (!name) {
           alert("Please enter your full name.");
           return;
