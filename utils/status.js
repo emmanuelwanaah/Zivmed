@@ -18,7 +18,7 @@ async function sendAppointmentStatusEmail(to, patientName, serviceName, status) 
 
   try {
     await resend.emails.send({
-      from: "Ziv Specialist Medical Consult <onboarding@resend.dev>",
+      from: "Ziv Specialist Medical Consult <noreply@zivspecialistmedicalconsult.com>",
       to,
       subject,
       html: `

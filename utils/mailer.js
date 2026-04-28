@@ -5,7 +5,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 async function sendBookingEmail(to, patientName, serviceName, date, time) {
   try {
     await resend.emails.send({
-      from: "Ziv Specialist Medical Consult <onboarding@resend.dev>",
+      from: "Ziv Specialist Medical Consult <noreply@zivspecialistmedicalconsult.com>",
       to,
       subject: "Appointment Confirmation - Ziv Medical ✅",
       html: `

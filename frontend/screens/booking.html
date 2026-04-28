@@ -16,96 +16,327 @@
 
 <!-- Font -->
 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#004b70",
+                        "on-tertiary-container": "#caced2",
+                        "primary-container": "#0f52ba",
+                        "surface-tint": "#1d59c1",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#dee8ff",
+                        "on-secondary-container": "#025881",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#90cdfd",
+                        "tertiary-fixed-dim": "#c3c7cb",
+                        "on-secondary-fixed": "#001e30",
+                        "on-tertiary-fixed-variant": "#43474b",
+                        "secondary-fixed-dim": "#90cdfd",
+                        "primary": "#003c90",
+                        "background": "#f9f9ff",
+                        "tertiary-container": "#53585c",
+                        "on-error": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#cae6ff",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#f9f9ff",
+                        "inverse-surface": "#263142",
+                        "on-background": "#111c2c",
+                        "tertiary-fixed": "#dfe3e7",
+                        "outline": "#737784",
+                        "on-primary-fixed-variant": "#00419c",
+                        "inverse-primary": "#b0c6ff",
+                        "primary-fixed-dim": "#b0c6ff",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#001945",
+                        "outline-variant": "#c3c6d5",
+                        "surface-dim": "#cfdaf1",
+                        "tertiary": "#3c4144",
+                        "on-primary-container": "#bcceff",
+                        "secondary": "#1c648e",
+                        "primary-fixed": "#d9e2ff",
+                        "surface-variant": "#d8e3fa",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#171c1f",
+                        "surface-container": "#e7eeff",
+                        "surface-container-highest": "#d8e3fa",
+                        "surface-container-low": "#f0f3ff",
+                        "on-surface": "#111c2c",
+                        "surface": "#f9f9ff",
+                        "on-surface-variant": "#434653",
+                        "inverse-on-surface": "#ebf1ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "lg": "2.5rem",
+                        "container-max": "1280px",
+                        "md": "1.5rem",
+                        "unit": "4px",
+                        "xl": "4rem",
+                        "xs": "0.5rem",
+                        "sm": "1rem"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "h2": ["Manrope"],
+                        "h1": ["Manrope"],
+                        "h3": ["Manrope"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "h2": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "h3": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "label-sm": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f9f9ff;
+        }
+        .form-select-custom {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23737784' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 1rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed-variant": "#004b70",
+                    "on-tertiary-container": "#caced2",
+                    "primary-container": "#0f52ba",
+                    "surface-tint": "#1d59c1",
+                    "on-primary": "#ffffff",
+                    "surface-container-high": "#dee8ff",
+                    "on-secondary-container": "#025881",
+                    "error": "#ba1a1a",
+                    "secondary-container": "#90cdfd",
+                    "tertiary-fixed-dim": "#c3c7cb",
+                    "on-secondary-fixed": "#001e30",
+                    "on-tertiary-fixed-variant": "#43474b",
+                    "secondary-fixed-dim": "#90cdfd",
+                    "primary": "#003c90",
+                    "background": "#f9f9ff",
+                    "tertiary-container": "#53585c",
+                    "on-error": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed": "#cae6ff",
+                    "on-error-container": "#93000a",
+                    "surface-bright": "#f9f9ff",
+                    "inverse-surface": "#263142",
+                    "on-background": "#111c2c",
+                    "tertiary-fixed": "#dfe3e7",
+                    "outline": "#737784",
+                    "on-primary-fixed-variant": "#00419c",
+                    "inverse-primary": "#b0c6ff",
+                    "primary-fixed-dim": "#b0c6ff",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed": "#001945",
+                    "outline-variant": "#c3c6d5",
+                    "surface-dim": "#cfdaf1",
+                    "tertiary": "#3c4144",
+                    "on-primary-container": "#bcceff",
+                    "secondary": "#1c648e",
+                    "primary-fixed": "#d9e2ff",
+                    "surface-variant": "#d8e3fa",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed": "#171c1f",
+                    "surface-container": "#e7eeff",
+                    "surface-container-highest": "#d8e3fa",
+                    "surface-container-low": "#f0f3ff",
+                    "on-surface": "#111c2c",
+                    "surface": "#f9f9ff",
+                    "on-surface-variant": "#434653",
+                    "inverse-on-surface": "#ebf1ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "lg": "2.5rem",
+                    "container-max": "1280px",
+                    "md": "1.5rem",
+                    "unit": "4px",
+                    "xl": "4rem",
+                    "xs": "0.5rem",
+                    "sm": "1rem"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "h2": ["Manrope"],
+                    "h1": ["Manrope"],
+                    "h3": ["Manrope"],
+                    "label-sm": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "h2": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "h3": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "label-sm": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        body {
+            background-color: #f9f9ff;
+        }
+    </style>
 
 <title>Ziv Specialist Medical Centre</title>
 
-<style>
-body {
-  font-family: 'Lato', sans-serif;
-  background: #f4f6f9;
-}
 
-.booking-card {
-  background: #fff;
-  border-radius: 20px;
-  padding: 30px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-}
-
-.step-indicator {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 30px;
-}
-
-.step {
-  text-align: center;
-  flex: 1;
-  position: relative;
-}
-
-.step::after {
-  content: "";
-  position: absolute;
-  top: 15px;
-  left: 50%;
-  width: 100%;
-  height: 2px;
-  background: #ddd;
-  z-index: -1;
-}
-
-.step:last-child::after {
-  display: none;
-}
-
-.step-circle {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: #ddd;
-  margin: auto;
-  line-height: 30px;
-  color: #fff;
-}
-
-.step.active .step-circle {
-  background: #0d6efd;
-}
-
-.form-control, .form-select {
-  border-radius: 10px;
-}
-
-.btn {
-  border-radius: 10px;
-  padding: 10px 20px;
-}
-</style>
 
 </head>
 
-<body>
+<body class="font-body-md text-on-surface text-on-background min-h-screen flex flex-col">
 
 <section class="py-5">
 <div class="container">
 
 <div class="booking-card mx-auto" style="max-width: 800px;">
 
-<!-- STEP INDICATOR -->
-<div class="step-indicator">
-  <div class="step active" id="indicator1">
-    <div class="step-circle">1</div>
-    <small>Select</small>
-  </div>
-  <div class="step" id="indicator2">
-    <div class="step-circle">2</div>
-    <small>Details</small>
-  </div>
-</div>
 
+<main id="step1" class="min-h-screen pt-md pb-xl px-gutter flex flex-col items-center">
+  <!-- Progress Indicator -->
+  <div class="w-full max-w-[560px] mb-lg">
+  <div class="flex items-center justify-between relative">
+  <!-- Line background -->
+  <div class="absolute top-1/2 left-0 w-full h-[2px] bg-surface-container-high -translate-y-1/2 z-0"></div>
+  <!-- Active Progress Line -->
+  <div class="absolute top-1/2 left-0 w-1/2 h-[2px] bg-primary-container -translate-y-1/2 z-0"></div>
+  <!-- Step 1 -->
+  <div class="relative z-10 flex flex-col items-center">
+  <div class="w-10 h-10 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-bold text-label-sm shadow-md">1</div>
+  <span class="mt-xs text-label-sm font-semibold text-primary">Appointment</span>
+  </div>
+  <!-- Step 2 -->
+  <div class="relative z-10 flex flex-col items-center">
+  <div class="w-10 h-10 rounded-full bg-surface-container-high text-outline flex items-center justify-center font-bold text-label-sm">2</div>
+  <span class="mt-xs text-label-sm font-medium text-outline">Confirmation</span>
+  </div>
+  </div>
+  </div>
+  <!-- Booking Card -->
+  <section class="w-full max-w-[560px] bg-surface-container-lowest rounded-xl shadow-[0px_4px_20px_-2px_rgba(15,82,186,0.05)] border border-surface-container overflow-hidden">
+  <div class="p-lg">
+  <div class="mb-lg">
+  <h1 class="font-h2 text-h2 text-on-surface mb-xs">Select your visit details</h1>
+  <p class="font-body-md text-on-surface-variant">Tell us who you'd like to see and when.</p>
+  </div>
+  <form id="bookingStep1" class="space-y-md">
+  <!-- Service Selection -->
+  <div class="space-y-2">
+  <label class="font-label-sm text-on-surface-variant px-1" for="service">Medical Service</label>
+  <div class="relative">
+  <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">medical_services</span>
+  <select class="w-full pl-12 pr-4 py-4 rounded-xl border border-outline-variant bg-white focus:ring-2 focus:ring-primary-container focus:border-primary-container transition-all text-body-md text-on-surface form-select-custom" id="service">
+  <option disabled="" selected="" value="">Select a service</option>
+ 
+  </select>
+  </div>
+  </div>
+  <!-- Doctor Selection -->
+  <div class="space-y-2">
+    <label class="font-label-sm text-on-surface-variant px-1" for="doctor">Preferred Doctor</label>
+    <div class="relative">
+      <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">person</span>
+      <select id="doctor" required class="w-full pl-12 pr-4 py-4 rounded-xl border border-outline-variant bg-white focus:ring-2 focus:ring-primary-container focus:border-primary-container transition-all text-body-md text-on-surface form-select-custom">
+        <option value="14" selected>Dr. John Smith</option>
+      </select>
+    </div>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+  <!-- Date Picker -->
+  <div class="space-y-2">
+  <label class="font-label-sm text-on-surface-variant px-1" for="date">Date</label>
+  <div class="relative">
+  <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">calendar_today</span>
+  <input class="w-full pl-12 pr-4 py-4 rounded-xl border border-outline-variant bg-white focus:ring-2 focus:ring-primary-container focus:border-primary-container transition-all text-body-md text-on-surface" id="date" type="date"/>
+  </div>
+  </div>
+  <!-- Time Selection -->
+  <div class="space-y-2">
+  <label class="font-label-sm text-on-surface-variant px-1" for="time">Preferred Time</label>
+  <div class="relative">
+  <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">schedule</span>
+  <select class="w-full pl-12 pr-4 py-4 rounded-xl border border-outline-variant bg-white focus:ring-2 focus:ring-primary-container focus:border-primary-container transition-all text-body-md text-on-surface form-select-custom" id="timeSlot">
+  <option disabled="" selected="" value="">Select time</option>
+  <option value="09:00">09:00 AM</option>
+  <option value="10:30">10:30 AM</option>
+  <option value="13:15">01:15 PM</option>
+  <option value="15:45">03:45 PM</option>
+  </select>
+  </div>
+  </div>
+  </div>
+  <!-- Submit Button -->
+  <div class="pt-sm">
+  <button class="w-full py-4 bg-primary-container text-on-primary font-h3 text-h3 rounded-xl shadow-lg hover:bg-primary transition-all active:scale-[0.98] flex items-center justify-center gap-2 group" type="submit">
+                              Next
+                              <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+  </button>
+  </div>
+  </form>
+  </div>
+  <!-- Promotional or Info Footer in Card -->
+  <div class="bg-surface-container-low p-md flex items-center gap-3 border-t border-surface-container">
+  <span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+  <p class="text-label-sm text-on-surface-variant">Your medical information is secure and encrypted with zivspecialistmedicalConsult standards.</p>
+  </div>
+  </section>
+
+  </main>
 <!-- STEP 1 -->
-<div id="step1">
+<!-- <div id="step1">
   <h4 class="fw-bold mb-3"><i class="bi bi-calendar-check"></i> Choose Appointment</h4>
 
   <form id="bookingStep1" class="row g-3">
@@ -143,10 +374,10 @@ body {
     </div>
 
   </form>
-</div>
+</div> -->
 
 <!-- STEP 2 -->
-<div id="step2" style="display:none;">
+<!-- <div id="step2" style="display:none;">
   <h4 class="fw-bold mb-3"><i class="bi bi-person"></i> Patient Details</h4>
 
   <form id="patientForm" class="row g-3">
@@ -177,8 +408,88 @@ body {
     </div>
 
   </form>
-</div>
-
+</div> -->
+<!-- Main Content: Linear Journey (Booking) -->
+<main id="step2" style="display:none;" class="flex-grow flex items-center justify-center px-gutter py-xl">
+  <div class="w-full mx-auto max-w-[600px]">
+  <!-- Progress Indicator -->
+  <div class="mb-xl flex items-center justify-center gap-sm">
+  <div class="flex items-center gap-3">
+  <div class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-high text-on-secondary-container font-bold text-label-sm border border-secondary-container">
+  <span class="material-symbols-outlined text-[18px] fill-icon" data-icon="check" style="font-variation-settings: 'FILL' 1;">check</span>
+  </div>
+  <span class="font-h3 text-label-sm text-outline">Service Selection</span>
+  </div>
+  <div class="w-12 h-[2px] bg-outline-variant mx-2"></div>
+  <div class="flex items-center gap-3">
+  <div class="w-10 h-10 rounded-full flex items-center justify-center bg-primary text-on-primary font-bold text-label-sm shadow-md">
+                          2
+                      </div>
+  <span class="font-h3 text-label-sm text-primary font-semibold">Patient Details</span>
+  </div>
+  </div>
+  <!-- Booking Card -->
+  <div class="bg-white rounded-xl shadow-[0px_4px_20px_-2px_rgba(15,82,186,0.05)] border border-surface-container-low overflow-hidden">
+  <div class="p-lg md:p-xl">
+  <div class="mb-md">
+  <h1 class="font-h2 text-h2 text-on-surface mb-xs">Patient Information</h1>
+  <p class="font-body-md text-on-surface-variant">Please provide the primary contact details for this appointment. We'll use this to send confirmation and reminders.</p>
+  </div>
+  <form id="patientForm" class="space-y-md">
+  <!-- Full Name -->
+  <div class="space-y-2">
+  <label class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1" for="full_name">
+                                  Full Name
+                              </label>
+  <div class="relative group">
+  <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors" data-icon="person">person</span>
+  <input id="fullName" class="w-full pl-12 pr-4 py-4 bg-surface-container-lowest border border-outline-variant rounded-lg font-body-md focus:ring-2 focus:ring-primary-container focus:border-primary-container outline-none transition-all placeholder:text-outline/50" id="full_name" placeholder="Enter your full legal name" type="text"/>
+  </div>
+  </div>
+  <!-- Email -->
+  <div class="space-y-2">
+  <label class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1" for="email">
+                                  Email Address
+                              </label>
+  <div class="relative group">
+  <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors" data-icon="mail">mail</span>
+  <input id="email"  class="w-full pl-12 pr-4 py-4 bg-surface-container-lowest border border-outline-variant rounded-lg font-body-md focus:ring-2 focus:ring-primary-container focus:border-primary-container outline-none transition-all placeholder:text-outline/50" id="email" placeholder="email@example.com" type="email"/>
+  </div>
+  </div>
+  <!-- Phone -->
+  <div class="space-y-2">
+  <label class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1" for="phone">
+                                  Phone Number
+                              </label>
+  <div class="relative group">
+  <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors" data-icon="call">call</span>
+  <input id="phone" class="w-full pl-12 pr-4 py-4 bg-surface-container-lowest border border-outline-variant rounded-lg font-body-md focus:ring-2 focus:ring-primary-container focus:border-primary-container outline-none transition-all placeholder:text-outline/50" id="phone" placeholder="+1 (555) 000-0000" type="tel"/>
+  </div>
+  </div>
+  </form>
+  <!-- Navigation Actions -->
+  <div class="mt-xl flex flex-col sm:flex-row items-center justify-between gap-md">
+  <button onclick="goBack()" class="w-full sm:w-auto px-lg py-3 flex items-center justify-center gap-2 text-on-surface-variant font-semibold hover:bg-surface-container rounded-lg transition-colors active:scale-95">
+  <span class="material-symbols-outlined text-[20px]" data-icon="arrow_back">arrow_back</span>
+                              Back
+                          </button>
+                          <button type="submit" form="patientForm"
+                          class="w-full sm:w-auto px-lg py-3 flex items-center justify-center gap-2 bg-primary-container text-on-primary font-bold rounded-xl shadow-lg hover:bg-primary transition-all active:scale-95">
+                          
+                          Confirm Appointment
+                          
+                          <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                        </button>
+  </div>
+  </div>
+  <!-- Footer Context / Decoration -->
+  
+  </div>
+  <p class="mt-md text-center text-label-sm text-outline/70 px-gutter">
+                  Your data is protected with end-to-end encryption. zivspecialistmedicalConsult follows all HIPAA and local healthcare privacy standards.
+              </p>
+  </div>
+  </main>
 </div>
 </div>
 </section>
@@ -207,7 +518,15 @@ body {
     let savedBooking = JSON.parse(localStorage.getItem("bookingData")) || {};
   
     // =========================
-    // 🔥 LOAD SERVICES FROM BACKEND
+    // ✅ PREVENT PAST DATES (SAFE)
+    // =========================
+    const today = new Date().toISOString().split("T")[0];
+    if (dateInput) {
+      dateInput.setAttribute("min", today);
+    }
+  
+    // =========================
+    // 🔥 LOAD SERVICES
     // =========================
     async function loadServices() {
       try {
@@ -216,6 +535,8 @@ body {
         if (!res.ok) throw new Error("Failed to fetch services");
   
         const data = await res.json();
+  
+        if (!serviceSelect) return;
   
         serviceSelect.innerHTML = `<option value="">Choose service</option>`;
   
@@ -236,6 +557,8 @@ body {
     // 🔥 LOAD TIME SLOTS
     // =========================
     function loadTimeSlots() {
+      if (!timeSlotSelect) return;
+  
       timeSlotSelect.innerHTML = `
         <option value="">Choose time</option>
         <option value="1">09:00 AM</option>
@@ -252,42 +575,63 @@ body {
     // =========================
     // RESTORE VALUES
     // =========================
-    if (savedBooking.service_id) serviceSelect.value = savedBooking.service_id;
-    if (savedBooking.doctor_id) doctorSelect.value = savedBooking.doctor_id;
-    if (savedBooking.date) dateInput.value = savedBooking.date;
-    if (savedBooking.time_slot_id) timeSlotSelect.value = savedBooking.time_slot_id;
+    if (savedBooking.service_id && serviceSelect) {
+      serviceSelect.value = savedBooking.service_id;
+    }
   
-    if (savedBooking.fullName) fullNameInput.value = savedBooking.fullName;
-    if (savedBooking.email) emailInput.value = savedBooking.email;
-    if (savedBooking.phone) phoneInput.value = savedBooking.phone;
+    if (savedBooking.doctor_id && doctorSelect) {
+      doctorSelect.value = savedBooking.doctor_id;
+    }
+  
+    if (savedBooking.date && savedBooking.date >= today && dateInput) {
+      dateInput.value = savedBooking.date;
+    }
+  
+    if (savedBooking.time_slot_id && timeSlotSelect) {
+      timeSlotSelect.value = savedBooking.time_slot_id;
+    }
+  
+    if (savedBooking.fullName && fullNameInput) {
+      fullNameInput.value = savedBooking.fullName;
+    }
+  
+    if (savedBooking.email && emailInput) {
+      emailInput.value = savedBooking.email;
+    }
+  
+    if (savedBooking.phone && phoneInput) {
+      phoneInput.value = savedBooking.phone;
+    }
   
     // =========================
     // STEP 1
     // =========================
-    bookingForm.addEventListener("submit", (e) => {
-      e.preventDefault();
+    if (bookingForm) {
+      bookingForm.addEventListener("submit", (e) => {
+        e.preventDefault();
   
-      if (!serviceSelect.value || !doctorSelect.value || !dateInput.value || !timeSlotSelect.value) {
-        alert("Please fill all fields to proceed.");
-        return;
-      }
+        if (!serviceSelect.value || !doctorSelect.value || !dateInput.value || !timeSlotSelect.value) {
+          alert("Please fill all fields to proceed.");
+          return;
+        }
   
-      savedBooking = {
-        ...savedBooking,
-        service_id: serviceSelect.value,
-        doctor_id: doctorSelect.value,
-        date: dateInput.value,
-        time_slot_id: timeSlotSelect.value
-      };
+        savedBooking = {
+          ...savedBooking,
+          service_id: serviceSelect.value,
+          doctor_id: doctorSelect.value,
+          date: dateInput.value,
+          time_slot_id: timeSlotSelect.value
+        };
   
-      localStorage.setItem("bookingData", JSON.stringify(savedBooking));
+        localStorage.setItem("bookingData", JSON.stringify(savedBooking));
   
-      step1.style.display = "none";
-      step2.style.display = "block";
+        step1.style.display = "none";
+        step2.style.display = "block";
   
-      indicator1.classList.remove("active");
-      indicator2.classList.add("active");
-    });
+        indicator1.classList.remove("active");
+        indicator2.classList.add("active");
+      });
+    }
   
     // =========================
     // BACK BUTTON
@@ -298,33 +642,65 @@ body {
   
       indicator2.classList.remove("active");
       indicator1.classList.add("active");
+  
+      // clear only step 2 data
+      delete savedBooking.fullName;
+      delete savedBooking.email;
+      delete savedBooking.phone;
+  
+      localStorage.setItem("bookingData", JSON.stringify(savedBooking));
+  
+      loadServices();
     };
   
     // =========================
     // STEP 2
     // =========================
-    patientForm.addEventListener("submit", (e) => {
-      e.preventDefault();
+    if (patientForm) {
+      patientForm.addEventListener("submit", (e) => {
+        e.preventDefault();
   
-      if (!fullNameInput.value || !emailInput.value || !phoneInput.value) {
-        alert("Please fill all your details.");
-        return;
-      }
+        const phone = phoneInput.value.trim();
+        const email = emailInput.value.trim();
+        const name = fullNameInput.value.trim();
   
-      savedBooking = {
-        ...savedBooking,
-        fullName: fullNameInput.value,
-        email: emailInput.value,
-        phone: phoneInput.value
-      };
+        // EMAIL VALIDATION
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          alert("Please enter a valid email address.");
+          return;
+        }
   
-      localStorage.setItem("bookingData", JSON.stringify(savedBooking));
+        // GHANA PHONE VALIDATION
+        const ghPhoneRegex = /^(?:\+233|233|0)(2[0-9]|5[0-9])[0-9]{7}$/;
+        if (!ghPhoneRegex.test(phone)) {
+          alert("Please enter a valid Ghana phone number.");
+          return;
+        }
   
-      alert("Booking saved!");
-      window.location.href = "/reviews";
-    });
+        // NAME
+        if (!name) {
+          alert("Please enter your full name.");
+          return;
+        }
+  
+        savedBooking = {
+          ...savedBooking,
+          fullName: name,
+          email: email,
+          phone: phone
+        };
+  
+        localStorage.setItem("bookingData", JSON.stringify(savedBooking));
+  
+        alert("Booking saved!");
+        window.location.href = "/reviews";
+      });
+    }
   
   });
   </script>
 </body>
 </html>
+
+

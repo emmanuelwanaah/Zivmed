@@ -5,7 +5,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 async function sendPaymentSuccessEmail(email, name, amount) {
   try {
     await resend.emails.send({
-      from: "Ziv Specialist Medical Consult <onboarding@resend.dev>",
+      from: "Ziv Specialist Medical Consult <noreply@zivspecialistmedicalconsult.com>",
       to: email,
       subject: "Payment Successful – Appointment Confirmed ✅",
       html: `

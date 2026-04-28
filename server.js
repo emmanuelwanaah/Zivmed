@@ -35,6 +35,9 @@ app.get("/", (req, res) =>
 app.get("/payment-success", (req, res) =>
   res.sendFile(path.join(__dirname, "frontend/screens/payment-success.html"))
 );
+app.get("/privacy", (req, res) =>
+  res.sendFile(path.join(__dirname, "frontend/screens/privacy.html"))
+);
 
 app.get("/payment-cancel", (req, res) =>
   res.sendFile(path.join(__dirname, "frontend/screens/payment-cancel.html"))
@@ -85,7 +88,9 @@ app.get("/reviews", (req, res) =>
 app.get("/doctor/appointments/approved", (req, res) =>
   res.sendFile(path.join(__dirname, "frontend/screens/approvedAppointments.html"))
 );
-
+app.get("/contact", (req, res) =>
+  res.sendFile(path.join(__dirname, "frontend/screens/contactus.html"))
+);
 // ✅ DB Connection Test
 const db = require("./config/db");
 
