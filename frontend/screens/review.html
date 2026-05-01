@@ -71,7 +71,7 @@ tailwind.config = {
         <span class="material-symbols-outlined text-primary">person</span>
         <span class="text-on-surface-variant font-label text-sm uppercase tracking-wider">Doctor</span>
       </div>
-      <span class="font-semibold text-on-surface" id="reviewDoctor">Dr. John Smith</span>
+      <span class="font-semibold text-on-surface" id="reviewDoctor">Dr. Osei Tutu</span>
     </div>
 
     <!-- Date -->
@@ -151,7 +151,7 @@ tailwind.config = {
       return;
     }
   
-    const fixedDoctorName = "Dr. John Smith";
+    const fixedDoctorName = "Dr. Osei Tutu";
     let lastBookingResponse = null; // ✅ store response for PDF later
   
     document.getElementById("reviewDoctor").textContent = fixedDoctorName;
@@ -214,7 +214,6 @@ tailwind.config = {
         patient_name: bookingData.fullName,
         patient_email: bookingData.email,
         service_id: bookingData.service_id,
-        doctor_id: 14,
         time_slot_id: bookingData.time_slot_id
       };
   

@@ -15,7 +15,7 @@ router.post("/", async (req, res) => {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
-    const defaultDoctorId = 21; // ID of your only doctor
+    const defaultDoctorId = 1; // ID of your only doctor
 
     const [result] = await db.query(
       `INSERT INTO appointments 
@@ -73,7 +73,7 @@ const appointments = results.map(a => ({
   status: a.status,
   date: a.created_at,
   service_name: a.service_name,   // ✅ FIXED
-  doctor_name: "Dr. John Smith",
+  doctor_name: "Dr. Osei Tutu",
   doctor_specialization: "--",
   patient_name: a.patient_name,
   patient_email: a.patient_email
