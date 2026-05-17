@@ -26,7 +26,29 @@ app.use("/api/services", require("./routes/services"));
 // Doctor API routes
 app.use("/api/doctor/auth", require("./routes/doctorsauth"));
 app.use("/api/doctor/appointments", require("./routes/doctorAppointments"));
+// Serve robots.txt
+app.get("/robots.txt", (req, res) => {
+  res.sendFile(path.join(__dirname, "robots.txt"));
+});
 
+// Serve sitemap.xml
+app.get("/sitemap.xml", (req, res) => {
+  res.sendFile(path.join(__dirname, "sitemap.xml"));
+});
+
+// Serve favicon
+app.get("/favicon.ico", (req, res) => {
+  res.sendFile(
+    path.join(__dirname, "frontend/assets/favicon/favicon.ico")
+  );
+});
+
+// Serve apple touch icon
+app.get("/apple-touch-icon.png", (req, res) => {
+  res.sendFile(
+    path.join(__dirname, "frontend/assets/favicon/apple-touch-icon.png")
+  );
+});
 // Frontend routes
 app.get("/", (req, res) =>
   res.sendFile(path.join(__dirname, "frontend/screens/index.html"))
