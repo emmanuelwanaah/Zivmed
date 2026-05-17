@@ -15,6 +15,19 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/assets", express.static(path.join(__dirname, "frontend/assets")));
 app.use("/css", express.static(path.join(__dirname, "frontend/css")));
 app.use("/js", express.static(path.join(__dirname, "frontend/js")));
+app.use((req, res, next) => {
+  const userAgent = req.get("user-agent") || "";
+
+  if (
+    userAgent.includes("facebookexternalhit") ||
+    userAgent.includes("Facebot")
+  ) {
+    console.log("Facebook crawler allowed");
+    return next();
+  }
+
+  next();
+});
 
 // API Routes
 app.use("/api/auth", require("./routes/auth"));
@@ -50,9 +63,11 @@ app.get("/apple-touch-icon.png", (req, res) => {
   );
 });
 // Frontend routes
-app.get("/", (req, res) =>
-  res.sendFile(path.join(__dirname, "frontend/screens/index.html"))
-);
+app.get("/", (req, res) => {
+  res.status(200).sendFile(
+    path.join(__dirname, "frontend/screens/index.html")
+  );
+});
 
 app.get("/payment-success", (req, res) =>
   res.sendFile(path.join(__dirname, "frontend/screens/payment-success.html"))
