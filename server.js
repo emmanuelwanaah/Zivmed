@@ -124,7 +124,11 @@ app.get("/reviews", (req, res) =>
 
 app.get("/doctor/appointments/approved", (req, res) =>
   res.sendFile(path.join(__dirname, "frontend/screens/approvedAppointments.html"))
+
 );
+app.get("/contactus", (req, res) => {
+  res.redirect(301, "/contact");
+});
 app.get("/contact", (req, res) =>
   res.sendFile(path.join(__dirname, "frontend/screens/contactus.html"))
 );
